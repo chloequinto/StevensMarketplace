@@ -4,16 +4,21 @@
   "description": "CS546 final project",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/chloequinto/StevensMarketplace.git"
   },
-  "author": "",
+  "author": "Ethan, Chloe, Govinda, Jessica",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/chloequinto/StevensMarketplace/issues"
   },
-  "homepage": "https://github.com/chloequinto/StevensMarketplace#readme"
+  "homepage": "https://github.com/chloequinto/StevensMarketplace#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "express-handlebars": "^4.0.3"
+  }
 }

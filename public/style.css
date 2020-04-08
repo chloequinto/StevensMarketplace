@@ -1,0 +1,95 @@
+:root{ 
+    --stevensRed: #9c2132; 
+    --stevensGray: #A4A5A4;
+    --white: #fff;
+}
+
+body{ 
+    margin: 0px; 
+}
+
+.nav{ 
+    background-color: var(--stevensRed); 
+    overflow: hidden;
+}
+
+.nav a {
+    float: right;
+    display: block;
+    color: var(--white);
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+.nav a:hover {
+    background-color: var(--white);
+    color: black;
+}
+
+.nav a.active {
+    background-color: var(--stevensGray);
+    color: white;
+}
+
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    width: 20%;
+}
+  
+.card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.card form{ 
+    text-align: center;
+}
+
+.card button{ 
+    border: none;
+    outline: 0;
+    color: white;
+    background-color: #000;
+    text-align: center;
+    cursor: pointer;
+    width: 100%;
+    font-size: 18px;
+}
+  
+.container {
+    padding: 2px;
+    text-align: center;
+    align-items: center;
+}
+
+form {
+    text-align: center;
+  }
+input[type="text"]{
+    width: 80%;
+    padding: 12px 20px 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+}
+
+
+  
+input[type="submit"]{
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 16px 32px;
+    text-decoration: none;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+#footer {
+    text-align: center;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 2.5rem; 
+}
