@@ -19,6 +19,7 @@
   "homepage": "https://github.com/chloequinto/StevensMarketplace#readme",
   "dependencies": {
     "express": "^4.17.1",
-    "express-handlebars": "^4.0.3"
+    "express-handlebars": "^4.0.3",
+    "mongodb": "^3.5.5"
   }
 }

@@ -1,0 +1,32 @@
+<table >
+    <tr>
+        <td>
+            <section>
+                <div class="container">
+                    <img src="{{productData.image}}"/>
+                    <p>
+                        {{productData.productName}}
+                    </p>
+                    <p>
+                        {{productData.description}}
+                    </p>
+        
+                    <button class="buyButton">
+                        {{productData.price}}
+                    </button>
+                </div>
+            </section>
+        </td>
+        <td>
+            <h3>Comments</h3>
+            <div class="commentsDiv">
+                {{#each productData.comments}}
+                    <p class="comment">"{{this}}"</p>
+                {{/each}}
+            </div>
+            
+        </td>
+    </tr>
+    
+</table>
+
