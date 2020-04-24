@@ -8,6 +8,10 @@ body{
     margin: 0px; 
 
 }
+h1, h4 {
+    padding-left: 7px;
+}
+
 
 .nav{ 
     background-color: var(--stevensRed); 
