@@ -1,40 +1,32 @@
 <div class="searchBar"> 
     <form method="POST" action="/search"> 
         <input type="text" name="text-to-test" id="search" placeholder="Find anything"/>
-        <button type="submit">Search</button> 
+        <button type="submit"class="btn btn-primary">Search</button> 
     </form>
 </div>
 
-<!-- Currently hard coded but will query from db after setup --> 
-<h4>Clothes</h4>
-<div class="card">
-    <div class="container">
-        <h6>Clothes</h6>
-        <form method="POST" action="/listingDetails"> 
-            <input type="hidden">
-            <button type="submit">Add to Cart</button>
-        </form>
+<div class="row-fluid"></div>     
+    <div class="card-deck">
+    {{# each content}}
+        <div class="col-sm-4">
+        <div class="card-columns-fluid">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">{{this.productName}}</h5>
+                    <p class="card-text">{{this.description}}</p>
+                    <a href="#" class="btn btn-primary" id="likeID">Buy</a>
+                </div>
+                <div class="card-footer">
+                    <small class="text-muted">{{this.category}}</small>
+                </div>
+            </div>
+        </div>
+        </div>
+    {{/each}}
     </div>
 </div>
 
-<h4>Books</h4>
-<div class="card">
-    <div class="container">
-        <h6>Books</h6>
-        <form method="POST" action="/listingDetails"> 
-            <input type="hidden">
-            <button type="submit">Add to Cart</button>
-        </form>
-    </div>
+<div class="shuffleMe"> 
+<a href="/home" class="btn btn-primary">Shuffle Items</a> 
 </div>
-
-<h4>Apartments</h4>
-<div class="card">
-    <div class="container">
-        <h6>Apartments</h6>
-        <form method="POST" action="/listingDetails"> 
-            <input type="hidden">
-            <button type="submit">Add to Cart</button>
-        </form>
-    </div>
-</div>
+     
