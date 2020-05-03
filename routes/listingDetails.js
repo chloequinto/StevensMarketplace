@@ -1,13 +1,13 @@
 const express = require('express');
 const router = express.Router();
 const data = require('../data');
-const productData = data.listings
+const productData = data.products
 
-router.post('/', async(req, res) => {
-    console.log(req.body)
+router.get('/', async(req, res) => {
+    
     try{
-        const product = await productData.getListing(req.params.id)
-        res.render('listingView/listingDetails', {productData: product, style: "details.css"})
+        const product = await productData.getProductById(req.query.id)
+        res.render('listingView/listingDetails', {productData: product, style: "css/details.css"})
     }
     catch (e) {
         res.status(500).json({error: e})

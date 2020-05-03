@@ -1,3 +1,4 @@
 module.exports = {
-    listings: require("./listings"),
+    // listings: require("./listings"),
+    products: require("./products")
 };
