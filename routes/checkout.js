@@ -14,14 +14,13 @@ router.get('/', async(req, res) => {
         
         // add product to the user's cart
         const addProductToUser = await user.addProductToCard(req.query.id, req.session.user.userId)
-        
-        console.log(addProductToUser)
+    
 
         // Given a list of products, return a list of product info 
-        // const cartInfo = await productData.getCartInfo(addProductToUser.cart)
-        // console.log(cartInfo)
+        const cartInfo = await productData.getCartInfo(addProductToUser.cart)
 
-        res.render('checkoutView/checkoutDetails', {productData: product, user: req.session.user, style: "css/checkout.css"})
+
+        res.render('checkoutView/checkoutDetails', {productData: cartInfo[0], total: cartInfo[1], user: req.session.user, style: "css/checkout.css"})
     }catch(e){ 
         res.status(500).json({error: e})
     }

@@ -86,17 +86,32 @@ module.exports = {
     }, 
 
     async getCartInfo(cartInfo){ 
+
         if (!cartInfo){ 
             throw "[ERROR] must provide cart information"
         }
-
+  
         const productsCollection = await products(); 
- 
-        // const productsFound = await productsCollection.find({"_id": {$in: [cartInfo]}}); 
 
+        // Convert String IDs to Object IDs
+        try { 
+            var obj_ids = cartInfo.map(function (item){
+                return new ObjectID(item)
+           });
+        }catch(e){ 
+            console.log(e)
+        }
 
-        console.log(productsFound); 
+        // Find all products where IDs are in the obj_ids
+        const productsFound = await productsCollection.find({"_id": {$in: obj_ids}}).toArray(); 
 
+        // Retrieve total price of cart 
+        let total = -5 // fix for coupon 
+        for (let i = 0; i < productsFound.length; i++){
+            total += productsFound[i].price
 
+        }
+
+        return [productsFound, total]
     }
 }
