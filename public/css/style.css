@@ -18,6 +18,13 @@ h1{
     color: white; 
 }
 
+.card-img{
+    height: 350px; 
+    width: 100%; 
+    display: block;
+
+}
+
 p { 
     font-family: 'Bebas Neue', cursive;
 }
@@ -72,7 +79,6 @@ input[type="text"]{
 
   
 input[type="submit"]{
-    background-color: #4CAF50;
     border: none;
     color: white;
     padding: 16px 32px;
@@ -90,14 +96,12 @@ input[type="submit"]{
 }
 
 .shuffleMe { 
-    margin: 0;
-    position: absolute;
-    top: 90%;
-    left: 50%;
-    -ms-transform: translate(-90%, -50%);
-    transform: translate(-90%, -50%)
+    width: 100%;
+    padding: 0.5% 15px 15px 0.5%;
+    right: 50%;
+    align-content: center;
+    text-align: center;
 }
-
 a.custom-card,
 a.custom-card:hover {
   color: inherit;

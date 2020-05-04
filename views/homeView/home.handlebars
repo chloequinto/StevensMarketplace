@@ -5,16 +5,23 @@
     </form>
 </div>
 
+<div class="shuffleMe"> 
+    <a href="/home" class="btn btn-danger">Shuffle Items</a> 
+</div>
+     
 <div class="row-fluid"></div>     
     <div class="card-deck">
     {{# each content}}
         <div class="col-sm-4">
         <div class="card-columns-fluid">
             <div class="card">
+
                 <div class="card-body">
                     <h5 class="card-title">{{this.productName}}</h5>
+
+                    <img src={{this.image}} class="card-img" alt="...">
+                    <h6 class="card-title pricing-card-title">Price: {{this.price}}</h6>
                     <p class="card-text">{{this.description}}</p>
-                    {{!-- <a href='/listingDetail?id=' + {{this._id}}) class="btn btn-danger" id="likeID">Buy</a> --}}
                     <a href='' onclick="this.href='/listingDetails?id={{this._id}}'" class="btn btn-danger" id="likeID">Buy</a>
                 </div>
                 <div class="card-footer">
@@ -27,7 +34,4 @@
     </div>
 </div>
 
-<div class="shuffleMe"> 
-<a href="/home" class="btn btn-danger">Shuffle Items</a> 
-</div>
-     
+

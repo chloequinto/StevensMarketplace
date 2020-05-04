@@ -80,7 +80,6 @@ module.exports = {
     }, 
 
     async getAllProducts(){ 
-        // Gets all products
         const productsCollection = await products(); 
         const productsAll = await productsCollection.aggregate([{ $sample: { size: 6 } }]).toArray(); 
         return productsAll;
