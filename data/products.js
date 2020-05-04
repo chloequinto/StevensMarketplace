@@ -83,5 +83,20 @@ module.exports = {
         const productsCollection = await products(); 
         const productsAll = await productsCollection.aggregate([{ $sample: { size: 6 } }]).toArray(); 
         return productsAll;
+    }, 
+
+    async getCartInfo(cartInfo){ 
+        if (!cartInfo){ 
+            throw "[ERROR] must provide cart information"
+        }
+
+        const productsCollection = await products(); 
+ 
+        // const productsFound = await productsCollection.find({"_id": {$in: [cartInfo]}}); 
+
+
+        console.log(productsFound); 
+
+
     }
 }

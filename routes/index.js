@@ -1,9 +1,13 @@
 const path = require('path');
+
 const listingsRoutes = require('./listingDetails')
 const newListingRoutes = require('./newListing')
 const homeRoutes = require('./homeRoutes')
+const checkoutRoutes = require('./checkout')
+
 const products = require("../data/products")
 const users = require("../data/users");
+
 const bcrypt = require("bcryptjs"); 
 
 
@@ -26,6 +30,9 @@ const constructorMethod = (app) => {
             user = await users.getUserByEmail(req.body.contactInfo)
             hashedPasswordInput = await users.hashPassword(req.body.password)
             if(bcrypt.compareSync(req.body.password, user.password)){
+                // Create session user 
+                req.session.user= {username: user.username, hasBought: user.hasBought, userId: user._id }
+                
                 res.cookie('AuthCookie',  user).redirect("/home")
             }
             else{
@@ -64,6 +71,7 @@ const constructorMethod = (app) => {
     app.use("/home", homeRoutes)
     app.use('/listingDetails', listingsRoutes)
     app.use('/new', newListingRoutes)
+    app.use("/checkout", checkoutRoutes)
 
 };  
 module.exports = constructorMethod;

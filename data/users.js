@@ -20,7 +20,7 @@ module.exports = {
         return userFound;
     }, 
 
-    async addNewUser(name, password, hasBought, favProducts, contactInfo){ 
+    async addNewUser(name, password, cart, itemsToSell, contactInfo){ 
         // Adds new user into DB
         if (typeof name !== "string" || name == null ){
             throw "[ERROR] No name provided or not string"
@@ -28,11 +28,11 @@ module.exports = {
         if(typeof password !== "string" || password === null){ 
             throw "[ERROR] No password provided or not string"
         }
-        if(typeof hasBought !== "object" || hasBought === null){ 
+        if(typeof cart !== "object" || cart === null){ 
             throw "[ERROR] No hasBought provided or not object"
         }
 
-        if(typeof favProducts !== "object" || favProducts === null){
+        if(typeof itemsToSell !== "object" || itemsToSell === null){
             throw "[ERROR] No favProducts provided or not object"
         }
 
@@ -48,8 +48,8 @@ module.exports = {
         let newUser = { 
             username: name, 
             password: await bcrypt.hashSync(password, salt), 
-            hasBought: hasBought, 
-            favProducts: favProducts, 
+            cart: cart, 
+            itemsToSell: itemsToSell, 
             contactInfo: contactInfo
         }; 
 
@@ -85,6 +85,31 @@ module.exports = {
         var salt = bcrypt.genSaltSync(10); 
         var hash = await bcrypt.hashSync(password, salt)
         return hash
+    }, 
+
+    async addProductToCard(productId, userId){ 
+
+        if(!productId){ 
+            throw "[ERROR] Must provide product ID"
+        }
+        if(!userId){ 
+            throw "[ERROR] Must provide User Info"
+        }
+
+        const usersCollection = await users(); 
+  
+        let userInfo = await this.getUserById(userId)
+  
+        const updateCart = await usersCollection.updateOne( 
+            {"_id": new ObjectID(userId)}, 
+            {$addToSet: {"cart": productId.toString()}}
+        );
+        
+        if(updateCart.modifiedCount === 0){
+            throw "[ERROR] Could not update cart"
+        }
+        userInfo = await this.getUserById(userId)
+        return userInfo
     }
 
 

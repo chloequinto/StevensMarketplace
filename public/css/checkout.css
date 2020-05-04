@@ -1,0 +1,25 @@
+.container {
+    max-width: 960px;
+  }
+  
+.lh-condensed { 
+    line-height: 1.25; 
+}
+
+@media (min-width: 768px) {
+    .bd-placeholder-img-lg {
+      font-size: 3.5rem;
+}
+}
+
+.billing-container{ 
+    margin: 1% 10% 10px 10%;
+}
+
+.jumbotron {
+    background-color:white;
+    margin:0px; 
+    padding-bottom: 0px;
+    padding: 0 0 0.75% 10%;
+
+}

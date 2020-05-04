@@ -11,26 +11,26 @@ const main = async () => {
     await db.dropDatabase(); 
 
     console.log(":::Adding Users:::\n");
-    var hasBought =  []
-    var favProducts = []
+    var cart =  []
+    var itemsToSell = []
 
     var name = "Chloe"
     var password = "apple"
     var contactInfo = "chloe@stevens.edu"
-    var userAdded = await users.addNewUser(name, password, hasBought, favProducts, contactInfo)
+    var userAdded = await users.addNewUser(name, password, cart, itemsToSell, contactInfo)
     console.log(userAdded); 
 
     var name = "Jessica"
     var password = "banana"
     var contactInfo = "jess@stevens.edu"
-    var userAdded = await users.addNewUser(name, password, hasBought, favProducts,contactInfo)
+    var userAdded = await users.addNewUser(name, password, cart, itemsToSell,contactInfo)
     console.log(userAdded); 
 
 
     var name = "Govinda"
     var password = "cherry"
     var contactInfo = "govinda@stevens.edu"
-    var userAdded = await users.addNewUser(name, password, hasBought, favProducts,contactInfo)
+    var userAdded = await users.addNewUser(name, password, cart, itemsToSell,contactInfo)
     console.log(userAdded); 
 
 
@@ -113,7 +113,7 @@ const main = async () => {
 
     var productName = "Don Quixote"
     var category = "Books"
-    var description = "lonso Quixano, a retired country gentleman in his fifties, lives in an unnamed section of La Mancha with his niece and a housekeeper"
+    var description = "Alonso Quixano, a retired country gentleman in his fifties, lives in an unnamed section of La Mancha with his niece and a housekeeper"
     var postedDate = new Date()
     var vendor = "Jessica"
     var comments = ["TODO", "TODO"]
