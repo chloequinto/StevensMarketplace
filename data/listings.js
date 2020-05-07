@@ -29,25 +29,22 @@ async function getListing(id){
     }
 }
 
-async function addListing(listingData){
-
-    /*
-
-    {
-        _id : string,
-        productName: string,
-        category: string,
-        description: string,
-        postedDate: date,
-        vendor: string,
-        comments: [string],
-        price: number,
-        contactInfo: string,
-        image: string,
+async function addListing(vendor, contactInfo, productName, category, description, price, image){
+    if(!vendor || !contactInfo || !productName || !category || !description || !price || !image) throw `Error: missing data`
+    if(typeof(vendor) !== "string" || typeof(contactInfo) !== "string" || typeof(productName) !== "string" || typeof(category) !== "string" || typeof(image)!=="string") throw `Error: must be a string`
+    if(typeof(price) !== "number") throw `Error: must be number`
+    
+    let object = {
+        'vendor': vendor,
+        'contactInfo': contactInfo,
+        'productName' : productName,
+        'category': category,
+        'description' : description,
+        'price': price,
+        'image': image,
     }
 
-    */
-
+    const add = await product
     // if(listingData.vendor === null) throw "Product must have a creator"
     // if(listingData.productName === null) throw "Listing must have a title"
     // if(listingData.price === null) throw "Listing must have a price"
