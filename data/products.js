@@ -21,7 +21,7 @@ module.exports = {
 
         return productFound;
     }, 
-    async addNewProduct(productName, category, description, postedDate, vendor, comments, price, image){ 
+    async addNewProduct(productName, category, description, postedDate, vendor, price, image){ 
         if (typeof productName !== "string" || productName == null){
             throw "[ERROR] No product name provided or not string"
         }
@@ -37,9 +37,9 @@ module.exports = {
         if (typeof vendor !== "string" || vendor == null){
             throw "[ERROR] No vendor provided or not string"
         }
-        if (typeof comments !== "object" || comments == null){
-            throw "[ERROR] No comments provided or not string"
-        }
+        // if (typeof comments !== "object" || comments == null){
+        //     throw "[ERROR] No comments provided or not string"
+        // }
         if (typeof price !== "number" || price == null){
             throw "[ERROR] No price provided or not string"
         }
@@ -59,7 +59,7 @@ module.exports = {
             description: description, 
             postedData: postedDate, 
             vendor: vendorContact.username, 
-            comments: comments, 
+            // comments: comments, 
             price: price, 
             contactInfo: vendorContact.contactInfo, 
             image: image

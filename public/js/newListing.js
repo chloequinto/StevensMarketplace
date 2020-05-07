@@ -1,12 +1,31 @@
-const staticForm = document.getElementById("static-form");
+//This for uploading pictures
 
-if(staticForm){
-    staticForm.addEventListener("submit", event => {
-        event.preventDefault();
-        const product = document.getElementById("product");
+console.log("hi")
+const imagefile = document.getElementById("picture");
 
-        if(!product){
-            alert("Please enter a product name")
-        }
+if(imagefile){
+    imagefile.addEventListener("change", function() {
+        const file = this.files[0];
+        if(file){
+            const reader = new FileReader(); 
+            reader.readAsDataURL(file);
+        }  
     })
+} else{
+    alert("Please enter a picture")
 }
+
+// function loadFile(event) {
+// 	const image = document.getElementById('picture');
+//     image.src = URL.createObjectURL(event.target.files[0])
+// }
+
+// if(staticform){
+//     const image = document.getElementById("picture")
+//     const imageValue = image.value
+//     if(!imageValue){
+//         alert("Please enter a picture")
+//     } else{
+//         loadFile(imageValue)
+//     }
+//}

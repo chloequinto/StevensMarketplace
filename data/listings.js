@@ -1,5 +1,5 @@
-// const mongoCollections = require('../config/mongoCollections');
-// const products = mongoCollections.Products
+const mongoCollections = require('../config/mongoCollections');
+const products = mongoCollections.products
 const ObjectId = require("mongodb").ObjectId
 
 async function getListing(id){
@@ -34,6 +34,7 @@ async function addListing(vendor, contactInfo, productName, category, descriptio
     if(typeof(vendor) !== "string" || typeof(contactInfo) !== "string" || typeof(productName) !== "string" || typeof(category) !== "string" || typeof(image)!=="string") throw `Error: must be a string`
     if(typeof(price) !== "number") throw `Error: must be number`
     
+    const productCollection = await products()
     let object = {
         'vendor': vendor,
         'contactInfo': contactInfo,
@@ -44,19 +45,20 @@ async function addListing(vendor, contactInfo, productName, category, descriptio
         'image': image,
     }
 
-    const add = await product
+    const add = await productCollection.insertOne(object);
+    if(add.insertedCount===0) throw `Error: could not add listing`
+    const newID = add.insertedId;
+
+    return await this.getListing(newId);
+
     // if(listingData.vendor === null) throw "Product must have a creator"
     // if(listingData.productName === null) throw "Listing must have a title"
     // if(listingData.price === null) throw "Listing must have a price"
     // if(listingData.description === null) throw "Listing must have a description"
     // if(listingData.contactInfo === null) throw "Listing must have a description"
 
-
-    
-
-
 }
 
 module.exports = {
-    getListing
+    getListing, addListing
 }

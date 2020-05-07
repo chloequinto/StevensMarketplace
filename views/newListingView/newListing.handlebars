@@ -1,14 +1,34 @@
-<h1></h1>
-<form method="POST" action ="/home">
+<form method="POST" action ="/newListing" id = "static-form">
   <label for="product">Product Name:</label>
   <input type="text" id="product" name="product"><br><br>
-  <label for="price">Price:</label>
-  <input type="text" id="price" name="price"><br><br>
+
+  <label for="product">Category:</label>
+  <input type="text" id="category" name="category"><br><br>
+
   <label for="description">Description:</label>
   <input type="text" id="description" name="description"><br><br>
+
+  <label for="price">Price:</label>
+  <input type="text" id="price" name="price"><br><br>
+
+  <label for="Username">Username:</label>
+  <input type="text" id="name" name="name"><br><br>
+
+
   <label for="picture">Picture:</label>
-  <input type="image" id="picture" name="picture"><br><br>
-  
+  <input type="file" id="picture" name="picture"><br><br>
+  <div class = "image-preview" id = "imagePreview">
+    {{!-- <img src = "" alt = "Image Preview" class = "image-preview__image"> --}}
+    {{!-- <span class = "image-preview__default-text">Image Preview</span> --}}
+
+    
+  </div>
+
 
   <input type="submit" value="Post">
 </form>
+{{#if message}}
+<p id = "message">{{message}}</p>
+{{/if}}
+
+<script src = "../../public/js/newListing.js "></script>

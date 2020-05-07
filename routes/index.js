@@ -71,7 +71,7 @@ const constructorMethod = (app) => {
 
     app.use("/home", homeRoutes)
     app.use('/listingDetails', listingsRoutes)
-    app.use('/new', newListingRoutes)
+    app.use('/newListing', newListingRoutes)
     app.use("/checkout", checkoutRoutes)
     app.use("/bought", boughtRoutes)
 
