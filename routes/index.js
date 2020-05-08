@@ -5,6 +5,7 @@ const newListingRoutes = require('./newListing')
 const homeRoutes = require('./homeRoutes')
 const checkoutRoutes = require('./checkout')
 const boughtRoutes = require('./bought')
+const cartRoutes = require('./cart')
 
 const products = require("../data/products")
 const users = require("../data/users");
@@ -74,6 +75,7 @@ const constructorMethod = (app) => {
     app.use('/newListing', newListingRoutes)
     app.use("/checkout", checkoutRoutes)
     app.use("/bought", boughtRoutes)
+    app.use("/cart", cartRoutes)
 
 };  
 module.exports = constructorMethod;

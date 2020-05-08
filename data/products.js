@@ -37,13 +37,10 @@ module.exports = {
         if (typeof vendor !== "string" || vendor == null){
             throw "[ERROR] No vendor provided or not string"
         }
-        // if (typeof comments !== "object" || comments == null){
-        //     throw "[ERROR] No comments provided or not string"
-        // }
         if (typeof price !== "number" || price == null){
-            throw "[ERROR] No price provided or not string"
+            throw "[ERROR] No price provided or not number"
         }
-        if (typeof image !== "string" || price == null){
+        if (typeof image !== "string" || image == null){
             throw "[ERROR] No image provided or not string"
         }
 
@@ -59,7 +56,7 @@ module.exports = {
             description: description, 
             postedData: postedDate, 
             vendor: vendorContact.username, 
-            // comments: comments, 
+    
             price: price, 
             contactInfo: vendorContact.contactInfo, 
             image: image
@@ -86,7 +83,6 @@ module.exports = {
     }, 
 
     async getCartInfo(cartInfo){ 
-
         if (!cartInfo){ 
             throw "[ERROR] must provide cart information"
         }

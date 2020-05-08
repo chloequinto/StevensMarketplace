@@ -41,11 +41,11 @@ const main = async () => {
     var description = "Book is the secret to sucess"
     var postedDate = new Date()
     var vendor = "Chloe"
-    var comments = ["Wow I like"]
     var price = 10
     var image = "https://cdn.clipart.email/2833f6201fdde175f809026cfb251cde_books-svg-clipart_1000-1000.svg";
 
-    var productAdded = await product.addNewProduct(productName, category, description, postedDate, vendor, comments, price, image)
+
+    var productAdded = await product.addNewProduct(productName, category, description, postedDate, vendor, price, image)
     console.log(productAdded) 
 
     var productName = "800 Madison"
@@ -53,11 +53,10 @@ const main = async () => {
     var description = "Pay a hefty rent for a triple room"
     var postedDate = new Date()
     var vendor = "Chloe"
-    var comments = ["Wow"]
     var price = 2000
     var image = "https://www.stevens.edu/sites/stevens_edu/files/styles/topic_single_content_350x234/public/800-Madison-St-1.jpg?itok=s-lHLrhF";
 
-    var productAdded = await product.addNewProduct(productName, category, description, postedDate, vendor, comments, price, image)
+    var productAdded = await product.addNewProduct(productName, category, description, postedDate, vendor, price, image)
     console.log(productAdded) 
 
     var productName = "538 Washington"
@@ -65,11 +64,10 @@ const main = async () => {
     var description = "Kung Fu Tea and Gong Cha near you"
     var postedDate = new Date()
     var vendor = "Chloe"
-    var comments = ["Wow"]
     var price = 7800
     var image = "https://www.stevens.edu/sites/stevens_edu/files/styles/topic_single_content_350x234/public/538-washington-st-1.jpg?itok=mrv8FW3T";
 
-    var productAdded = await product.addNewProduct(productName, category, description, postedDate, vendor, comments, price, image)
+    var productAdded = await product.addNewProduct(productName, category, description, postedDate, vendor, price, image)
     console.log(productAdded) 
 
 
@@ -78,11 +76,10 @@ const main = async () => {
     var description = "When you're late for work, run to the path in 2 min"
     var postedDate = new Date()
     var vendor = "Govinda"
-    var comments = ["Wow"]
     var price = 7800
     var image = "https://www.stevens.edu/sites/stevens_edu/files/styles/topic_single_content_350x234/public/110-washington-1.jpg?itok=bCxEGaWe";
 
-    var productAdded = await product.addNewProduct(productName, category, description, postedDate, vendor, comments, price, image)
+    var productAdded = await product.addNewProduct(productName, category, description, postedDate, vendor, price, image)
     console.log(productAdded) 
     
     var productName = "The Great Gatsby"
@@ -90,11 +87,10 @@ const main = async () => {
     var description = "The novel chronicles an era that Fitzgerald himself dubbed the \'Jazz age\'"
     var postedDate = new Date()
     var vendor = "Govinda"
-    var comments = ["TODO", "TODO"]
     var price = 20
     var image = "https://images-na.ssl-images-amazon.com/images/I/81af+MCATTL.jpg";
 
-    var productAdded = await product.addNewProduct(productName, category, description, postedDate, vendor, comments, price, image)
+    var productAdded = await product.addNewProduct(productName, category, description, postedDate, vendor, price, image)
     console.log(productAdded) 
 
 
@@ -103,11 +99,10 @@ const main = async () => {
     var description = "Get that moola"
     var postedDate = new Date()
     var vendor = "Govinda"
-    var comments = ["TODO", "TODO"]
     var price = 20
     var image = "https://prodimage.images-bn.com/pimages/9780984782857_p0_v1_s1200x630.jpg";
 
-    var productAdded = await product.addNewProduct(productName, category, description, postedDate, vendor, comments, price, image)
+    var productAdded = await product.addNewProduct(productName, category, description, postedDate, vendor, price, image)
     console.log(productAdded) 
 
 
@@ -116,11 +111,10 @@ const main = async () => {
     var description = "Alonso Quixano, a retired country gentleman in his fifties, lives in an unnamed section of La Mancha with his niece and a housekeeper"
     var postedDate = new Date()
     var vendor = "Jessica"
-    var comments = ["TODO", "TODO"]
     var price = 20
     var image = "https://kbimages1-a.akamaihd.net/b2ece927-6fe1-40fd-8ee2-681e9c3fe4c3/1200/1200/False/don-quixote-101.jpg";
 
-    var productAdded = await product.addNewProduct(productName, category, description, postedDate, vendor, comments, price, image)
+    var productAdded = await product.addNewProduct(productName, category, description, postedDate, vendor, price, image)
     console.log(productAdded) 
 
 
@@ -129,11 +123,10 @@ const main = async () => {
     var description = ""
     var postedDate = new Date()
     var vendor = "Jessica"
-    var comments = ["TODO", "TODO"]
     var price = 20
     var image = "https://images-na.ssl-images-amazon.com/images/I/51J1nb00FLL._SL160_.jpg";
 
-    var productAdded = await product.addNewProduct(productName, category, description, postedDate, vendor, comments, price, image)
+    var productAdded = await product.addNewProduct(productName, category, description, postedDate, vendor, price, image)
     console.log(productAdded) 
 
 
@@ -142,11 +135,10 @@ const main = async () => {
     var description = "DESCRIPTION"
     var postedDate = new Date()
     var vendor = "Jessica"
-    var comments = ["TODO", "TODO"]
     var price = 20
     var image = "https://cdn.clipart.email/2833f6201fdde175f809026cfb251cde_books-svg-clipart_1000-1000.svg";
 
-    var productAdded = await product.addNewProduct(productName, category, description, postedDate, vendor, comments, price, image)
+    var productAdded = await product.addNewProduct(productName, category, description, postedDate, vendor, price, image)
     console.log(productAdded) 
 
 

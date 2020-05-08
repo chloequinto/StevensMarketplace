@@ -15,7 +15,7 @@ h4, h5 {
 
 h1{ 
     font-family: 'Bebas Neue', cursive;
-    color: white; 
+    color: black; 
 }
 
 .card-img{
@@ -141,3 +141,12 @@ a.custom-card:hover {
   .dropdown:hover .dropdown-content {display: block;}
   
   .dropdown:hover .dropbtn {background-color: transparent}
+
+
+  .jumbotron {
+    background-color:white;
+    margin:0px; 
+    padding-bottom: 0px;
+    padding: 0 0 0.75% 10%;
+
+}

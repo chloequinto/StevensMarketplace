@@ -10,7 +10,10 @@
                     <p>
                         {{productData.description}}
                     </p>
-                      <a href='' onclick="this.href='/checkout?id={{productData._id}}'" class="btn btn-danger" id="likeID">${{productData.price}}</a>
+                    <p> 
+                        ${{productData.price}}
+                    </p>
+                      <a href='' onclick="this.href='/cart?id={{productData._id}}'" class="btn btn-danger" id="likeID">Add to cart</a>
                    
                 </div>
             </section>

@@ -110,7 +110,38 @@ module.exports = {
         }
         userInfo = await this.getUserById(userId)
         return userInfo
-    }
+    }, 
+
+
+    async getUsersCart(userId){ 
+        if (!userId){ 
+            throw "[ERROR] No userID provided"
+        }
+
+        let userInfo = await this.getUserById(userId); 
+        return userInfo.cart
+    }, 
+
+    async clearCart(userId){ 
+        console.log("here")
+        if (!userId){ 
+            throw "[ERROR] No userID provided"
+        }
+
+        const usersCollection = await users(); 
+
+        const updateUser = await usersCollection.updateOne(
+            {"_id": new ObjectID(userId)}, 
+            {$set: {'cart': []}}); 
+            
+        if (updateUser.modifiedCount === 0){ 
+            throw "[ERROR] Could not update cart"
+        }
+
+        const foundId = await this.getUserById(userId)
+
+        return foundId
+    },
 
 
 }
