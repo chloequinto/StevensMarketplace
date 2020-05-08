@@ -102,7 +102,7 @@ module.exports = {
   
         const updateCart = await usersCollection.updateOne( 
             {"_id": new ObjectID(userId)}, 
-            {$addToSet: {"cart": productId.toString()}}
+            {$push: {"cart": productId.toString()}}
         );
         
         if(updateCart.modifiedCount === 0){
@@ -123,7 +123,6 @@ module.exports = {
     }, 
 
     async clearCart(userId){ 
-        console.log("here")
         if (!userId){ 
             throw "[ERROR] No userID provided"
         }
