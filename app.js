@@ -42,6 +42,94 @@ app.use(async (req, res, next) => {
 	// next()
 });
 
+// Middlewares 
+app.use("/home", (req, res,next)=> { 
+	if (!req.session.user){
+        let authenticated = "Non-Authenticated User (Middleware)"
+        console.log('[' + new Date().toUTCString() + ": " + req.method + " " + req.originalUrl+ " " + authenticated)
+        return res.redirect('/login') 
+    }else { 
+        let authenticated = "Authenticated User (Middleware)"
+		console.log('[' + new Date().toUTCString() + ": " + req.method + " " + req.originalUrl+ " " + authenticated)
+        next(); 
+    }
+});
+
+app.use("/cart", (req, res, next)=> { 
+	if (!req.session.user){
+        let authenticated = "Non-Authenticated User (Middleware)"
+        console.log(new Date().toUTCString() + ": " + req.method + " " + req.originalUrl+ " " + authenticated)
+        return res.redirect('/login') 
+    }else { 
+        let authenticated = "Authenticated User (Middleware)"
+        console.log(new Date().toUTCString() + ": " + req.method + " " + req.originalUrl+ " " + authenticated)
+        next(); 
+    }
+}); 
+
+app.use("/checkout", (req, res, next)=> { 
+	if (!req.session.user){
+        let authenticated = "Non-Authenticated User (Middleware)"
+		console.log('[' + new Date().toUTCString() + ": " + req.method + " " + req.originalUrl+ " " + authenticated)
+        return res.redirect('/login') 
+    }else { 
+        let authenticated = "Authenticated User (Middleware)"
+		console.log('[' + new Date().toUTCString() + ": " + req.method + " " + req.originalUrl+ " " + authenticated)
+        next(); 
+    }
+});
+
+app.use("/bought", (req, res, next)=> { 
+	if (!req.session.user){
+        let authenticated = "Non-Authenticated User (Middleware)"
+		console.log('[' + new Date().toUTCString() + ": " + req.method + " " + req.originalUrl+ " " + authenticated)
+        return res.redirect('/login') 
+    }else { 
+        let authenticated = "Authenticated User (Middleware)"
+		console.log('[' + new Date().toUTCString() + ": " + req.method + " " + req.originalUrl+ " " + authenticated)
+        next(); 
+    }
+});
+
+
+app.use("/newListing", (req, res, next)=> { 
+	if (!req.session.user){
+        let authenticated = "Non-Authenticated User (Middleware)"
+		console.log('[' + new Date().toUTCString() + ": " + req.method + " " + req.originalUrl+ " " + authenticated)
+        return res.redirect('/login') 
+    }else { 
+        let authenticated = "Authenticated User (Middleware)"
+		console.log('[' + new Date().toUTCString() + ": " + req.method + " " + req.originalUrl+ " " + authenticated)
+        next(); 
+    }
+});
+
+
+app.use("/search", (req, res, next)=> { 
+	if (!req.session.user){
+        let authenticated = "Non-Authenticated User (Middleware)"
+		console.log('[' + new Date().toUTCString() + ": " + req.method + " " + req.originalUrl+ " " + authenticated)
+        return res.redirect('/login') 
+    }else { 
+        let authenticated = "Authenticated User (Middleware)"
+		console.log('[' + new Date().toUTCString() + ": " + req.method + " " + req.originalUrl+ " " + authenticated)
+        next(); 
+    }
+});
+
+app.use("/listingDetails", (req, res, next)=> { 
+	if (!req.session.user){
+        let authenticated = "Non-Authenticated User (Middleware)"
+		console.log('[' + new Date().toUTCString() + ": " + req.method + " " + req.originalUrl+ " " + authenticated)
+        return res.redirect('/login') 
+    }else { 
+        let authenticated = "Authenticated User (Middleware)"
+		console.log('[' + new Date().toUTCString() + ": " + req.method + " " + req.originalUrl+ " " + authenticated)
+        next(); 
+    }
+});
+
+
 configRoutes(app);
 
 app.listen(3000, () => {
