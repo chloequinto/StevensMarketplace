@@ -7,7 +7,7 @@ router.get('/', async(req, res) => {
     
     try{
         const product = await productData.getProductById(req.query.id)
-        res.render('listingView/listingDetails', {productData: product, style: "css/details.css"})
+        res.render('listingView/listingDetails', {productData: product, style: "css/details.css", editing: false})
     }
     catch (e) {
         res.status(500).json({error: e})
