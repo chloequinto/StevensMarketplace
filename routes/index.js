@@ -23,7 +23,7 @@ const constructorMethod = (app) => {
     });
 
     app.get('/login', (req, res) => {
-        res.render('login/login', {style: 'css/styles.css'})
+        res.render('login/login', {style: 'css/login.css', errorMsg: req.cookies.loginErrorMsg})
     })
 
     app.post('/login', async (req, res) => {
@@ -33,15 +33,16 @@ const constructorMethod = (app) => {
             if(bcrypt.compareSync(req.body.password, user.password)){
                 // Create session user 
                 req.session.user= {username: user.username, hasBought: user.hasBought, userId: user._id }
-                
+                res.clearCookie('createErrorMsg')
+                res.clearCookie('loginErrorMsg')
                 res.cookie('AuthCookie',  user).redirect("/home")
             }
             else{
-                res.redirect("/login")
+                res.cookie('loginErrorMsg',  'Invalid Credentials').redirect("/login")
             }
         }
         catch{
-            res.redirect("/createAccount")
+            res.cookie('loginErrorMsg',  'Invalid Credentials').redirect("/login")
         }
     })
     app.get('/createAccount', (req, res) => {
@@ -49,17 +50,28 @@ const constructorMethod = (app) => {
             res.redirect('/home')
         }
         else{
-            res.render('login/newUser', {style: 'css/styles.css'})
+            
+            res.render('login/newUser', {style: 'css/login.css', errorMsg: req.cookies.createErrorMsg})
         }
     })
 
     app.post('/createUser', async (req, res) => {
         try{
-            user = await users.addNewUser(req.body.name, req.body.password, [], [], req.body.contactInfo)
-            res.cookie('AuthCookie',  user).redirect("/home")
+            if( req.body.name != null && req.body.name != "" &&
+                req.body.password != null && req.body.password != "" &&
+                req.body.contactInfo != null && req.body.contactInfo != "" ){
+                user = await users.addNewUser(req.body.name, req.body.password, [], [], req.body.contactInfo)            
+                res.clearCookie('createErrorMsg')
+                res.clearCookie('loginErrorMsg')
+                res.cookie('AuthCookie',  user).redirect("/home")
+
+            }
+            else{
+                res.cookie('createErrorMsg',  'Must provide valid name, email, and password').redirect("/createAccount")
+            }
         }
         catch{
-            res.redirect("/createAccount")
+            res.cookie('createErrorMsg',  'Must provide valid name, email, and password').redirect("/createAccount")
         }
         
     })
