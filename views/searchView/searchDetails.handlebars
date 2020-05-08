@@ -1,0 +1,28 @@
+<div class="jumbotron">
+  <h1 class="display-4">Search Results for: {{this.search}}</h1>
+</div>
+<div class="searchResults">
+    <h4 class="d-flex justify-content-between align-items-center mb-3">
+      <span class="text-muted">What we found: </span>
+      <span class="badge badge-secondary badge-pill">{{results.length}}</span>
+    </h4>
+    <ul class="list-group mb-3">
+
+      {{# each results}}
+      <a href="" onclick="this.href='/listingDetails?id={{this._id}}'" class="searchLinks">
+      <ul class="list-group">
+        <li class="list-group-item">
+            <div>
+              <h6 class="my-0">{{this.productName}}</h6>
+              <small class="text-muted">{{this.description}}</small>
+            </div>
+        <span class="text-muted">${{this.price}}</span>
+        </li>
+      </ul>
+      </a>
+
+      {{/each}}
+    </ul>
+
+    <a href="/home" class="btn btn-danger">Look for something else</a> 
+</div>

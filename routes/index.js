@@ -6,6 +6,7 @@ const homeRoutes = require('./homeRoutes')
 const checkoutRoutes = require('./checkout')
 const boughtRoutes = require('./bought')
 const cartRoutes = require('./cart')
+const searchRoutes = require('./search')
 
 const products = require("../data/products")
 const users = require("../data/users");
@@ -32,7 +33,6 @@ const constructorMethod = (app) => {
             user = await users.getUserByEmail(req.body.contactInfo)
             hashedPasswordInput = await users.hashPassword(req.body.password)
             if(bcrypt.compareSync(req.body.password, user.password)){
-                // Create session user 
                 req.session.user= {username: user.username, hasBought: user.hasBought, userId: user._id }
                 res.clearCookie('createErrorMsg')
                 res.clearCookie('loginErrorMsg')
@@ -88,6 +88,7 @@ const constructorMethod = (app) => {
     app.use("/checkout", checkoutRoutes)
     app.use("/bought", boughtRoutes)
     app.use("/cart", cartRoutes)
+    app.use("/search", searchRoutes)
 
 };  
 module.exports = constructorMethod;

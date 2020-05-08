@@ -1,5 +1,5 @@
 :root{ 
-    --stevensRed: #9c2132; 
+    --stevensRed:rgb(226, 47, 64); 
     --stevensGray: #A4A5A4;
     --white: #fff;
 }
@@ -18,12 +18,26 @@ h1{
     color: black; 
 }
 
+h2{ 
+    font-family: "Bebas Neue", cursive; 
+    color: var(--stevensRed)
+}
+
 .card-img{
     height: 350px; 
     width: 100%; 
     display: block;
 
 }
+
+.searchLinks{ 
+    color: var(--stevensRed)
+}
+
+.searchLinks:hover{ 
+    color: var(--stevensRed)
+}
+
 
 p { 
     font-family: 'Bebas Neue', cursive;
@@ -143,10 +157,19 @@ a.custom-card:hover {
   .dropdown:hover .dropbtn {background-color: transparent}
 
 
-  .jumbotron {
+.jumbotron {
     background-color:white;
     margin:0px; 
     padding-bottom: 0px;
     padding: 0 0 0.75% 10%;
 
+}
+
+.searchResults{ 
+    position:absolute;
+    width: 100%; 
+    left: 50%;
+    padding: 2% 10% 5% 10%;
+    transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
 }

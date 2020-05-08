@@ -107,7 +107,27 @@ module.exports = {
             total += productsFound[i].price
 
         }
-
         return [productsFound, total]
+    }, 
+
+    async getSearchResults(query){ 
+        if (!query){ 
+            throw "[ERROR] Must Provide a Query"
+        }
+
+        const productsCollection = await products(); 
+        
+        try{ 
+            var foundItems = await productsCollection.find(
+                {"productName" : {'$regex' : query.term, 
+                                 '$options': "i"}}) // case insensitive 
+                .toArray()
+    
+        }catch(e){ 
+            console.log(e)
+        }
+        return foundItems
+        
+  
     }
 }
