@@ -123,7 +123,6 @@ module.exports = {
     }, 
 
     async clearCart(userId){ 
-        console.log("here")
         if (!userId){ 
             throw "[ERROR] No userID provided"
         }
