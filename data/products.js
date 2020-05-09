@@ -21,6 +21,25 @@ module.exports = {
 
         return productFound;
     }, 
+    async getProductByUsername(username){
+        if(typeof(username) !== "string" || !username){
+            throw "[ERROR] must provide username of type string to search for products"
+        }
+        const productsCollection = await products();       
+        try{ 
+            var foundItems = await productsCollection.find(
+                {"vendor" : {'$regex' : username, 
+                                 '$options': "i"}}) 
+                .toArray()
+    
+        }catch(e){ 
+            console.log(e)
+        }
+        return foundItems
+        
+  
+    },
+
     async addNewProduct(productName, category, description, postedDate, vendor, price, image){ 
         if (typeof productName !== "string" || !productName){
             throw "[ERROR] No product name provided or not string"

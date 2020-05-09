@@ -1,0 +1,17 @@
+<p class = "profile">Your Listings<p>
+{{#each yourListings}}
+    <div class = "listing">
+
+    {{#with this}}
+        <p>Product Name: {{productName}}</p>
+        <p>Category: {{category}}</p>
+        <p>Description: {{description}}</p>
+        <p>Price: {{price}}</p>
+        <p>{{image}}</p>
+        <p>Date Posted: {{postedData}}</p>
+
+    {{/with}}
+
+    </div>
+
+{{/each}}
