@@ -7,6 +7,7 @@ const product = data.products;
 router.get('/', async(req, res) => {
     res.render("newListingView/newListing", {style: 'css/new.css'});
 })
+
 router.post('/', async(req, res) =>{
     const listingData = req.body;
     try{
@@ -19,17 +20,23 @@ router.post('/', async(req, res) =>{
         console.log(price)
         console.log(typeof(price))
         price = Number(price)
+
         await product.addNewProduct(name, category, description, date, username, price, picture);
         res.render("newListingView/newListing", {
             style: 'css/new.css',
-            messageSuccessful: true
+            message: "Post successful!",
+            class: 'success',
         })
     } catch(e){
         console.log(e);
         res.status(400);
+
         res.render("newListingView/newListing", {
             style: 'css/new.css',
-            messageSuccessful: false
+            message: "Post Failed",
+            class: "fail"
+
+
         })
        }
 

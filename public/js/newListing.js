@@ -21,22 +21,22 @@ reader.onload = function(){
 reader.readAsDataURL(input.files[0]);
 }
 
-$('myFormSubmit').click(function (e){
-    const formData = new FormData()
-    formData.append('photo',('#picture').files[0])
-    $ajax({
-        method : 'POST',
-        processData : false,
-        contentType : false,
-        url : '/',
-        data: formData,
-    })
-})
-// if(imageFile){
-//     const openFile = function(file){
+// $('myFormSubmit').click(function (e){
+//     const formData = new FormData()
+//     formData.append('photo',('#picture').files[0])
+//     $ajax({
+//         method : 'POST',
+//         processData : false,
+//         contentType : false,
+//         url : '/',
+//         data: formData,
+//     })
+// })
+if(imageFile){
+    const openFile = function(file){
 
-//     }
-// }
+    }
+}
 
 // // if(imageFile){
 //     imageFile.addEventListener("change", function() {
@@ -52,17 +52,6 @@ $('myFormSubmit').click(function (e){
 //     alert("Please enter a picture")
 // }
 
-const form = document.getElementById("static-form")
-if(form){
-    form.addEventListener("submit",event => {
-        event.preventDefault()
-        document.getElementById("errorMessage").removeAttribute("hidden")
-    })
-}
-// function loadFile(event) {
-// 	const image = document.getElementById('picture');
-//     image.src = URL.createObjectURL(event.target.files[0])
-// }
 
 // if(staticform){
 //     const image = document.getElementById("picture")
@@ -72,4 +61,4 @@ if(form){
 //     } else{
 //         loadFile(imageValue)
 //     }
-//}
+//

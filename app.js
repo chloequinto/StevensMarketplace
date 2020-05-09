@@ -28,7 +28,6 @@ app.use(
 	})
 );
 
-
 app.use(async (req, res, next) => {
 	console.log(
 		'[' + (new Date()).toUTCString() + ']: ' + req.method +' '+ req.originalUrl + ' ' + JSON.stringify(req.body)

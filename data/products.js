@@ -22,25 +22,25 @@ module.exports = {
         return productFound;
     }, 
     async addNewProduct(productName, category, description, postedDate, vendor, price, image){ 
-        if (typeof productName !== "string" || productName == null){
+        if (typeof productName !== "string" || !productName){
             throw "[ERROR] No product name provided or not string"
         }
-        if (typeof category !== "string" || category == null){
+        if (typeof category !== "string" || !category){
             throw "[ERROR] No category provided or not string"
         }
-        if (typeof description !== "string" || description == null){
+        if (typeof description !== "string" || !description){
             throw "[ERROR] No description provided or not string"
         }
-        if (typeof postedDate !== "object" || productName == null){
+        if (typeof postedDate !== "object" || !postedDate){
             throw "[ERROR] No date provided or not string"
         }
-        if (typeof vendor !== "string" || vendor == null){
+        if (typeof vendor !== "string" || !vendor){
             throw "[ERROR] No vendor provided or not string"
         }
-        if (typeof price !== "number" || price == null){
+        if (typeof price !== "number" || !price){
             throw "[ERROR] No price provided or not number"
         }
-        if (typeof image !== "string" || image == null){
+        if (typeof image !== "string" || !image){
             throw "[ERROR] No image provided or not string"
         }
 

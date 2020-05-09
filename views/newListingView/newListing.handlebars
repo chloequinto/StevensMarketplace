@@ -1,5 +1,5 @@
 <p class = "one">Create A New Listing</p>
-<form method="POST" action ="/newListing" id = "static-form">
+<form method="POST" id = "static-form">
   <label for="name">Product Name:</label>
   <input type="text" id="name" name="name"><br><br>
 
@@ -12,32 +12,17 @@
   <label for="price">Price:</label>
   <input type="text" id="price" name="price"><br><br>
 
-  {{!-- <label for="Username">Username:</label>
-  <input type="text" id="username" name="username"><br><br> --}}
-
 
   <label for="picture">Picture:</label>
   <input type="file" name = "picture" id="picture" accept = 'image/*' onchange = 'openFile(event)'name="picture" class="picture"><br><br>
-  <img id='output' style="height:100px; width:100px;">
-  <div class = "image-preview" id = "imagePreview">
-    {{!-- <img src = "" alt = "Image Preview" class = "image-preview__image"> --}}
-    {{!-- <span class = "image-preview__default-text">Image Preview</span> --}}
 
-    
-  </div>
 
+  <img id='output'><br><br>
 
   <input type="submit" value="Post" id = "myFormSubmit">
+  
 </form>
-<div id='errorMessage' hidden>
-{{#if messageSuccessful}}
-<p id = "message" class = "success">Post successful!</p>
-{{/if}}
-{{#unless messageSuccessful}}
-<p id = "message" class = "fail">Post failed</p>
-{{/unless}}
-</div>
+<p id = "message" class = {{class}}>{{message}}</p>
 
-
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src = "../../public/js/newListing.js "></script>
