@@ -7,6 +7,7 @@ const checkoutRoutes = require('./checkout')
 const boughtRoutes = require('./bought')
 const cartRoutes = require('./cart')
 const searchRoutes = require('./search')
+const profileRoutes = require('./profile')
 
 const products = require("../data/products")
 const users = require("../data/users");
@@ -84,6 +85,7 @@ const constructorMethod = (app) => {
 
     app.use("/home", homeRoutes)
     app.use('/listingDetails', listingsRoutes)
+    app.use('/profile', profileRoutes)
     app.use('/newListing', newListingRoutes)
     app.use("/checkout", checkoutRoutes)
     app.use("/bought", boughtRoutes)

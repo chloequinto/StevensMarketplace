@@ -1,4 +1,5 @@
 module.exports = {
     // listings: require("./listings"),
-    products: require("./products")
+    products: require("./products"),
+    users: require("./users")
 };

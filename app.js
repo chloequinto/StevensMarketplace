@@ -92,7 +92,7 @@ app.use("/bought", (req, res, next)=> {
 
 
 app.use("/newListing", (req, res, next)=> { 
-	if (!req.session.user){
+		if (!req.session.user){
         let authenticated = "Non-Authenticated User (Middleware)"
 		console.log('[' + new Date().toUTCString() + ": " + req.method + " " + req.originalUrl+ " " + authenticated)
         return res.redirect('/login') 
@@ -127,7 +127,6 @@ app.use("/listingDetails", (req, res, next)=> {
         next(); 
     }
 });
-
 
 configRoutes(app);
 

@@ -2,10 +2,7 @@
 
 const imageFile = document.getElementById("picture");
 let imageValue = imageFile.value
-// console.log('here')
-// console.log(imageFile)
-// console.log(imageValue)
-// const  imageFile = document.forms['static-form']['picture'].files[0];
+
 
 const openFile = function(file){
     const input = file.target;
@@ -20,6 +17,27 @@ reader.onload = function(){
 }
 reader.readAsDataURL(input.files[0]);
 }
+
+const handleImageUpload = event => {
+    const files = event.target.files
+    const formData = new FormData()
+    formData.append('myFile', files[0])
+    fetch('/newListing',{
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log(data.path)
+    })
+    .catch(error =>{
+        console.log(error)
+    })
+
+}
+document.querySelector('#picture').addEventListener('change', event =>{
+    handleImageUpload(event)
+})
 
 // $('myFormSubmit').click(function (e){
 //     const formData = new FormData()

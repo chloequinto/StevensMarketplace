@@ -3,19 +3,16 @@ const router = express.Router();
 const data = require('../data');
 const product = data.products;
 
-
 router.get('/', async(req, res) => {
     res.render("newListingView/newListing", {style: 'css/new.css'});
 })
-
 router.post('/', async(req, res) =>{
     const listingData = req.body;
+    
     try{
         const date = new Date();
         const username = req.session.user.username
-        
         let {name, category, description, price, picture} = listingData
-
         
         console.log(price)
         console.log(typeof(price))
