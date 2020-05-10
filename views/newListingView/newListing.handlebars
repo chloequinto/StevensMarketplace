@@ -1,5 +1,5 @@
 <p class = "one">Create A New Listing</p>
-<form method="POST" id = "static-form">
+<form method="POST" id = "static-form" enctype="multipart/form-data">
   <label for="name">Product Name:</label>
   <input type="text" id="name" name="name"><br><br>
 
@@ -14,10 +14,10 @@
 
 
   <label for="picture">Picture:</label>
-  <input type="file" name = "picture" id="picture" accept = 'image/*' onchange = 'openFile(event)'name="picture" class="picture"><br><br>
+  <input type="file" name = "picture" id="picture" accept = 'image/*' onchange = 'openFile(event)' class="picture"><br><br>
 
 
-  <img id='output'><br><br>
+  <img id='output' name = "output"><br><br>
 
   <input type="submit" value="Post" id = "myFormSubmit">
   

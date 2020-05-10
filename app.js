@@ -8,6 +8,14 @@ const exphbs = require('express-handlebars');
 const session = require("express-session");
 const cookieParser = require('cookie-parser');
 
+const multer = require('multer')
+const bodyParser = require('body-parser')
+
+// const methodOVerride = require('method-override')
+
+app.use(bodyParser());
+// app.use(methodOVerride());
+app.use(express.static('uploads'))
 app.use(cookieParser())
 app.use('/public', static);
 app.use(express.json());

@@ -1,21 +1,36 @@
+const multer = require('multer')
 const express = require('express');
 const router = express.Router();
 const data = require('../data');
 const product = data.products;
 
+const storage = multer.diskStorage({
+    destination: function(req, file, cb) {
+        cb(null, './uploads/')
+    },
+    filename: function(req,file, cb){
+        cb(null, file.originalname)
+    }
+})
+
+const upload = multer({storage: storage})
+
+
+
 router.get('/', async(req, res) => {
     res.render("newListingView/newListing", {style: 'css/new.css'});
 })
-router.post('/', async(req, res) =>{
+router.post('/', upload.single('picture'), async(req, res) =>{
     const listingData = req.body;
-    
     try{
         const date = new Date();
         const username = req.session.user.username
-        let {name, category, description, price, picture} = listingData
-        
-        console.log(price)
-        console.log(typeof(price))
+        const picture = req.file.originalname
+
+
+
+        let {name, category, description, price} = listingData
+
         price = Number(price)
 
         await product.addNewProduct(name, category, description, date, username, price, picture);
@@ -38,7 +53,6 @@ router.post('/', async(req, res) =>{
        }
 
 })
-
 
 
 module.exports = router;

@@ -68,7 +68,7 @@ module.exports = {
         const usersCollection = await users(); 
 
         let vendorContact = await usersCollection.findOne({username: vendor})
-
+        
         let newProduct = { 
             productName: productName, 
             category: category, 
@@ -148,5 +148,6 @@ module.exports = {
         return foundItems
         
   
-    }
+    },
+
 }
