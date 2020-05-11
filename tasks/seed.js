@@ -13,24 +13,25 @@ const main = async () => {
     console.log(":::Adding Users:::\n");
     var cart =  []
     var itemsToSell = []
+    var previouslyBought = []
 
     var name = "Chloe"
     var password = "apple"
     var contactInfo = "chloe@stevens.edu"
-    var userAdded = await users.addNewUser(name, password, cart, itemsToSell, contactInfo)
+    var userAdded = await users.addNewUser(name, password, cart, previouslyBought, itemsToSell, contactInfo)
     console.log(userAdded); 
 
     var name = "Jessica"
     var password = "banana"
     var contactInfo = "jess@stevens.edu"
-    var userAdded = await users.addNewUser(name, password, cart, itemsToSell,contactInfo)
+    var userAdded = await users.addNewUser(name, password, cart, previouslyBought,  itemsToSell,contactInfo)
     console.log(userAdded); 
 
 
     var name = "Govinda"
     var password = "cherry"
     var contactInfo = "govinda@stevens.edu"
-    var userAdded = await users.addNewUser(name, password, cart, itemsToSell,contactInfo)
+    var userAdded = await users.addNewUser(name, password, cart, previouslyBought, itemsToSell,contactInfo)
     console.log(userAdded); 
 
 
@@ -120,7 +121,7 @@ const main = async () => {
 
     var productName = "War and Peace"
     var category = "Books"
-    var description = ""
+    var description = "The novel chronicles the French invasion of Russia and the impact of the Napoleonic era on Tsarist society through the stories of five Russian aristocratic families."
     var postedDate = new Date()
     var vendor = "Jessica"
     var price = 20
@@ -132,7 +133,7 @@ const main = async () => {
 
     var productName = "2020 Year Book"
     var category = "Books"
-    var description = "DESCRIPTION"
+    var description = "Zoom University"
     var postedDate = new Date()
     var vendor = "Jessica"
     var price = 20

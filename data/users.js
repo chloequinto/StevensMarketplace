@@ -20,7 +20,7 @@ module.exports = {
         return userFound;
     }, 
 
-    async addNewUser(name, password, cart, itemsToSell, contactInfo){ 
+    async addNewUser(name, password, cart, previouslyBought, itemsToSell, contactInfo){ 
         // Adds new user into DB
         if (typeof name !== "string" || name == null ){
             throw "[ERROR] No name provided or not string"
@@ -30,6 +30,10 @@ module.exports = {
         }
         if(typeof cart !== "object" || cart === null){ 
             throw "[ERROR] No hasBought provided or not object"
+        }
+
+        if(typeof previouslyBought !== "object" || previouslyBought === null){ 
+            throw "[ERROR] No previouslyBought provided or not object"
         }
 
         if(typeof itemsToSell !== "object" || itemsToSell === null){
@@ -49,6 +53,7 @@ module.exports = {
             username: name, 
             password: await bcrypt.hashSync(password, salt), 
             cart: cart, 
+            previouslyBought: previouslyBought, 
             itemsToSell: itemsToSell, 
             contactInfo: contactInfo
         }; 
@@ -141,6 +146,66 @@ module.exports = {
 
         return foundId
     },
+
+    async getPreviouslyBought(userId){ 
+        if (!userId){ 
+            throw "[ERROR] No userID provided"
+        }
+
+        let userInfo = await this.getUserById(userId); 
+        return userInfo.previouslyBought 
+    },
+
+    async previouslyBought(userId){ 
+        if (!userId){ 
+            throw "[ERROR] No userID provided"
+        }
+        
+        const usersCollection = await users(); 
+
+        const cartInfo = await this.getUsersCart(userId); 
+      
+        const currPreviousBought = await this.getPreviouslyBought(userId); 
+
+        // If a user's previouslyBought contains items, append instead of replace 
+        if(currPreviousBought.length > 0){ 
+            let totalCart = []
+
+            for (let i = 0; i < currPreviousBought.length; i++){ 
+                totalCart.push(currPreviousBought[i])
+            }
+
+            for (let j = 0; j < cartInfo.length; j++){ 
+                totalCart.push(cartInfo[j])
+            }
+
+            const updateUser = await usersCollection.updateOne(
+                {"_id": new ObjectID(userId)}, 
+                {$set: {'previouslyBought':  totalCart}}
+            )
+            if (updateUser.modifiedCount === 0){ 
+                throw "[ERROR] Could not update cart"
+            }
+    
+            const foundId = await this.getUserById(userId)
+            return foundId
+        }else{ 
+            const updateUser = await usersCollection.updateOne(
+                {"_id": new ObjectID(userId)}, 
+                {$set: {'previouslyBought':  cartInfo}}
+            )
+    
+            if (updateUser.modifiedCount === 0){ 
+                throw "[ERROR] Could not update cart"
+            }
+    
+            const foundId = await this.getUserById(userId)
+    
+            return foundId
+        }
+
+       
+    }
 
 
 }

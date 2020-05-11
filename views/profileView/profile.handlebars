@@ -23,6 +23,30 @@
 <p class = "email"> {{email}}</p>
 </div>
 <div class = "info">
-<p class = "bought"> Previously Bought: {{history}} </p>
-<p class = "fav">Favorite Listings: {{fav}} </p>
+    <h4> Previously Bought: </h4>
+    <div class="row-fluid">  
+    <div class="card-deck">
+    {{# each history}}
+    <div class="col-sm-4">
+        <div class="card-columns-fluid">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">{{this.productName}}</h5>
+
+                    <img src={{this.image}} class="card-img" alt="...">
+                    <h6 class="card-title pricing-card-title">Price: {{this.price}}</h6>
+                    <p class="card-text">{{this.description}}</p>
+                    <a href='' onclick="this.href='/listingDetails?id={{this._id}}'" class="btn btn-danger" id="likeID">Buy Again</a>
+                </div>
+                <div class="card-footer">
+                    <small class="text-muted">{{this.category}}</small>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{/each}}
+    </div>
+    </div>
+
+    <h4 class = "fav">Favorite Listings: {{fav}} </h4>
 </div>
