@@ -12,7 +12,8 @@ router.get('/', async(req, res) => {
 
         // Get the user's products 
         const usersCart = await users.getUsersCart(req.session.user.userId); 
-
+        console.log(usersCart)
+        console.log(typeof(usersCart))
         // Get product's info 
         const productInfo = await products.getCartInfo(usersCart)
 
@@ -20,8 +21,13 @@ router.get('/', async(req, res) => {
         if (productInfo[1] < 0){ 
             productInfo[1] = 0; 
         }
+        // check if users cart is empty
+        if(Object.keys(usersCart).length === 0){
+            res.render('cartView/cartDetails',{message: 'There is nothing in your cart!', style: "css/style.css"})
+        } else{
+            res.render('checkoutView/checkoutDetails', { productData: productInfo[0], total: productInfo[1], user: req.session.user, style: "css/checkout.css"})
 
-        res.render('checkoutView/checkoutDetails', { productData: productInfo[0], total: productInfo[1], user: req.session.user, style: "css/checkout.css"})
+        }
     }catch(e){ 
         res.status(500).json({error: e})
     }
