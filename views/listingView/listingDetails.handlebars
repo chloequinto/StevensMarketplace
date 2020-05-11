@@ -32,8 +32,15 @@
                     <p> 
                         ${{productData.price}}
                     </p>
-                      <a href='' onclick="this.href='/cart?id={{productData._id}}'" class="btn btn-danger" id="likeID">Add to cart</a>
-                   
+                    <a href='' onclick="this.href='/cart?id={{productData._id}}'" class="btn btn-danger" id="likeID">Add to cart</a>
+                    {{#if favorite}}
+                        <img id="likeBtn" src="../../public/images/heart.png" onclick="likeClicked(this, '{{productData._id}}')"/>
+                    {{else}}
+                        <img id="likeBtn" src="../../public/images/heart-outline.png" onclick="likeClicked(this, '{{productData._id}}')"/>
+
+                    {{/if}}
+
+                    <script src="../../public/js/listingDetails.js"></script>
                 </div>
             </section>
         </td>
@@ -41,4 +48,3 @@
     </tr>
     
 </table>
-

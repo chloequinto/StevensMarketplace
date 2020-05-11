@@ -55,7 +55,8 @@ module.exports = {
             cart: cart, 
             previouslyBought: previouslyBought, 
             itemsToSell: itemsToSell, 
-            contactInfo: contactInfo
+            contactInfo: contactInfo,
+            favorites: []
         }; 
 
         const insertUser = await usersCollection.insertOne(newUser); 
@@ -205,6 +206,63 @@ module.exports = {
         }
 
        
+    },
+
+    async addFavorite(userId, listingId){
+        if (!userId){ 
+            throw "[ERROR] No userID provided"
+        }
+        if(!listingId){
+            throw "[ERROR] No listingId provided"
+        }
+        const usersCollection = await users(); 
+
+        updatedUser = await usersCollection.updateOne(
+            {"_id": new ObjectID(userId)}, 
+            {$push: {'favorites':  listingId.toString()}}
+        )
+        
+        return updatedUser
+
+
+    },
+    
+    async removeFavorite(userId, listingId){
+        if (!userId){ 
+            throw "[ERROR] No userID provided"
+        }
+        if(!listingId){
+            throw "[ERROR] No listingId provided"
+        }
+        const usersCollection = await users(); 
+
+        updatedUser = await usersCollection.updateOne(
+            {"_id": new ObjectID(userId)}, 
+            {$pull: {'favorites':  listingId.toString()}}
+        )
+        
+        return updatedUser
+
+
+    },
+
+    async getUserFavorites(userId){
+        if (!userId){ 
+            throw "[ERROR] No userID provided"
+        }
+
+        const user = await this.getUserById(userId)
+        if(user){
+            if(user.favorites != null){
+                return user.favorites
+            }
+            else{
+                return []
+            }
+        }
+        else{
+            throw "No user exists with the provided id"
+        }
     }
 
 
