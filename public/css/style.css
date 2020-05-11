@@ -157,6 +157,7 @@ a.custom-card:hover {
   .dropdown:hover .dropbtn {background-color: transparent}
 
 
+  
 .jumbotron {
     background-color:white;
     margin:0px; 
@@ -164,6 +165,12 @@ a.custom-card:hover {
     padding: 0 0 0.75% 10%;
 
 }
+
+/* .display-4{ 
+    font-family: 'Bebas Neue', cursive;
+    color: black; 
+} */
+
 
 .searchResults{ 
     position:absolute;

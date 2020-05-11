@@ -38,7 +38,7 @@ app.use(
 
 app.use(async (req, res, next) => {
 	console.log(
-		'[' + (new Date()).toUTCString() + ']: ' + req.method +' '+ req.originalUrl + ' ' + JSON.stringify(req.body)
+		'[' + (new Date()).toUTCString() + ']: ' + req.method +' '+ req.originalUrl + ' '
 	);
 	if(req.cookies.AuthCookie || req.originalUrl == '/createUser' || req.originalUrl=='/createAccount' || req.originalUrl=='/login'){
 		next()

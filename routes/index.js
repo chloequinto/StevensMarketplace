@@ -63,7 +63,8 @@ const constructorMethod = (app) => {
             if( req.body.name != null && req.body.name != "" &&
                 req.body.password != null && req.body.password != "" &&
                 req.body.contactInfo != null && req.body.contactInfo != "" ){
-                user = await users.addNewUser(req.body.name, req.body.password, [], [], req.body.contactInfo)            
+                user = await users.addNewUser(req.body.name, req.body.password, [], [], req.body.contactInfo)       
+                req.session.user= {username: user.username, hasBought: user.hasBought, userId: user._id }     
                 res.clearCookie('createErrorMsg')
                 res.clearCookie('loginErrorMsg')
                 res.cookie('AuthCookie',  user).redirect("/home")

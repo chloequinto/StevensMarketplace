@@ -99,6 +99,11 @@ form{
     display: block;
   }
 
+a,
+a:hover {
+  color: inherit;
+}
+
   
   
   .dropdown-content a:hover {background-color: #ddd;}
@@ -108,7 +113,7 @@ form{
   .dropdown:hover .dropbtn {background-color: transparent}
 
 .loginContainer{
-    
+    margin-top: 0.5%;
     text-align: center;
     padding: 10px;
 }
@@ -119,7 +124,6 @@ input{
 }
 
 .submitLoginBtn{
-    
     padding: 10px;
     background-color: var(--stevensRed);
     color: white;
@@ -137,4 +141,16 @@ p{
     padding: 10px;
     color: rgb(215, 122, 122);
     
+}
+.title {
+    background-color:white;
+    margin:0px; 
+    padding: 10% 0 0 0 ;
+    text-align: center;
+
+}
+
+h1{ 
+    font-family: 'Bebas Neue', cursive;
+    color: black; 
 }
