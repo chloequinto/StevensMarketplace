@@ -40,17 +40,20 @@ router.get('/', async(req, res) => {
     }
     
 })
+
 router.post('/', upload.single('picture'), async(req, res) =>{
     const listingData = req.body;
     
     try{
+        const picture = req.file.originalname
+        const id = req.query.id
         let {name, category, description, price} = listingData
-
-
-        price = Number(price)
-
         
-        await product.updateProduct(req.query.id, name, category, description, price, "picture");
+        
+        price = Number(price)
+        // const date = new Date()
+        // const username = req.session.user.username
+        await product.updateProduct(id, name, category, description, price, picture);
         res.render("editingView/editingView", {
             style: 'css/new.css',
             message: "Update successful!",
@@ -60,7 +63,7 @@ router.post('/', upload.single('picture'), async(req, res) =>{
             listingCategory: category,
             listingDescription: description,
             listingPrice: price,
-            listingImage: "../../public/images/none.png",
+            listingImage: picture,
             //display data
         })
         
