@@ -10,6 +10,7 @@ const searchRoutes = require('./search')
 const profileRoutes = require('./profile')
 const yourListingsRoutes = require('./yourListings')
 const favoriteRoutes = require('./favorites')
+const editRoutes = require('./editListing')
 
 const products = require("../data/products")
 const users = require("../data/users");
@@ -64,11 +65,19 @@ const constructorMethod = (app) => {
             if( req.body.name != null && req.body.name != "" &&
                 req.body.password != null && req.body.password != "" &&
                 req.body.contactInfo != null && req.body.contactInfo != "" ){
-                user = await users.addNewUser(req.body.name, req.body.password, [], [],[], req.body.contactInfo)       
-                req.session.user= {username: user.username, hasBought: user.hasBought, userId: user._id }     
-                res.clearCookie('createErrorMsg')
-                res.clearCookie('loginErrorMsg')
-                res.cookie('AuthCookie',  user).redirect("/home")
+
+                userSearch = await users.userExistsFromUsername(req.body.name)
+                if(userSearch){
+                    res.cookie('createErrorMsg',  'An account with the same username exists').redirect("/createAccount")
+                }
+                else{
+                    user = await users.addNewUser(req.body.name, req.body.password, [], [],[], req.body.contactInfo)       
+                    req.session.user= {username: user.username, hasBought: user.hasBought, userId: user._id }     
+                    res.clearCookie('createErrorMsg')
+                    res.clearCookie('loginErrorMsg')
+                    res.cookie('AuthCookie',  user).redirect("/home")
+
+                }
 
             }
             else{
@@ -97,6 +106,8 @@ const constructorMethod = (app) => {
     app.use("/cart", cartRoutes)
     app.use("/search", searchRoutes)
     app.use("/favorites", favoriteRoutes)
+    app.use("/editListing", editRoutes)
 
 };  
+
 module.exports = constructorMethod;

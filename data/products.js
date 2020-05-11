@@ -40,7 +40,7 @@ module.exports = {
   
     },
 
-    async addNewProduct(productName, category, description, postedDate, vendor, price, image){ 
+    async addNewProduct(productName, category, description, postedDate, vendor, price, image, vendorId){ 
         if (typeof productName !== "string" || !productName){
             throw "[ERROR] No product name provided or not string"
         }
@@ -68,17 +68,17 @@ module.exports = {
         const usersCollection = await users(); 
 
         let vendorContact = await usersCollection.findOne({username: vendor})
-        
+        console.log(vendorContact)
         let newProduct = { 
             productName: productName, 
             category: category, 
             description: description, 
             postedData: postedDate, 
             vendor: vendorContact.username, 
-    
             price: price, 
             contactInfo: vendorContact.contactInfo, 
-            image: image
+            image: image,
+            vendorId: vendorId
         }
 
         const insertProduct = await productsCollection.insertOne(newProduct); 
@@ -169,5 +169,41 @@ module.exports = {
         
   
     },
+
+    async updateProduct(id, productName, category, description, price, image) {
+        console.log(id)
+        if (!id) throw 'You must provide an id to update product for';
+		if (typeof productName !== "string" || !productName){
+            throw "[ERROR] No product name provided or not string"
+        }
+        if (typeof category !== "string" || !category){
+            throw "[ERROR] No category provided or not string"
+        }
+        if (typeof description !== "string" || !description){
+            throw "[ERROR] No description provided or not string"
+        }
+        if (typeof price !== "number" || !price){
+            throw "[ERROR] No price provided or not number"
+        }
+        if (typeof image !== "string" || !image){
+            throw "[ERROR] No image provided or not string"
+        }
+
+		const productsCollection = await products(); 
+		let updateProduct = { 
+            productName: productName, 
+            category: category, 
+            description: description, 
+            price: price, 
+            image: image
+        }
+
+		const updatedInfo = await productsCollection.updateOne({ _id: new ObjectID(id) }, { $set: updateProduct });
+		if (updatedInfo.modifiedCount === 0) {
+			throw 'could not update product successfully';
+		}
+
+		return await this.getProductById(id);
+	}
 
 }

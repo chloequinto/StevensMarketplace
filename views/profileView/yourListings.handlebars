@@ -27,7 +27,9 @@
         <p>Description: {{description}}</p>
         <p>Price: {{price}}</p>
         <img src="{{image}}" height="300" width="400" class= "productImage" onerror="this.src='../../public/images/none.png'"/>       
-         <p>Date Posted: {{postedData}}</p>
+        <p>Date Posted: {{postedData}}</p>
+
+        <a href='' onclick="this.href='/editListing?id={{_id}}'" class="btn btn-danger" id="likeID">Edit</a>
 
     {{/with}}
 

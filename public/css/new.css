@@ -125,3 +125,9 @@ input[type="form"]{
     margin: 4px 2px;
     cursor: pointer;
 }
+
+
+#output{
+    width: 300px;
+    height: 300px;
+}

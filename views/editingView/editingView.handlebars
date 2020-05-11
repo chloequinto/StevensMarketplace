@@ -1,0 +1,54 @@
+<div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
+<h5 class="my-0 mr-md-auto font-weight-normal">Stevens Marketplace</h5>
+
+<nav class="my-2 my-md-0 mr-md-3">
+    <a class="p-2 text-dark" href="/home">Home</a>
+    <a class="p-2 text-dark" href="/newListing">New Listing</a>
+    <a class="p-2 text-dark" href="/cart">Cart</a>
+    <div class="dropdown">
+        <button class="dropbtn"><img src = "../../public/images/profile icon.jpg"  width="25" height="25" alt ="Profile"></button>
+        <div class="dropdown-content">
+        <a href="/profile">Your profile</a>
+        <a href="/yourListings">Your listings</a>
+        </div>
+    </div>
+
+</nav>
+<a class="btn btn-outline-danger" href="/logout">Logout</a>
+
+</div>
+
+{{#if allowed}}
+
+<p class = "one">Edit your Listing</p>
+<form method="POST" id = "static-form">
+  <label for="name">Product Name:</label>
+  <input type="text" id="name" name="name" value={{listingName}}><br><br>
+
+  <label for="category">Category:</label>
+  <input type="text" id="category" name="category" value={{listingCategory}}><br><br>
+
+  <label for="description">Description:</label>
+  <input type="text" id="description" name="description" value={{listingDescription}}><br><br>
+
+  <label for="price">Price:</label>
+  <input type="text" id="price" name="price" value={{listingPrice}}><br><br>
+
+
+  <label for="picture">Picture:</label>
+  <input type="file"  name = "picture" id="picture" accept = 'image/*' onchange = 'openFile(event)'name="picture" class="picture"><br><br>
+
+
+  <img id='output' src={{listingImage}}><br><br>
+
+  <input type="submit" value="Post" id = "myFormSubmit">
+  
+</form>
+<p id = "message" class = {{class}}>{{message}}</p>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src = "../../public/js/editListing.js "></script>
+
+{{else}}
+<h2>You are not allowed to edit this listing</h2>
+{{/if}}

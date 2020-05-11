@@ -20,6 +20,21 @@ module.exports = {
         return userFound;
     }, 
 
+    async userExistsFromUsername(username){ 
+        // Retrieves user info from DB 
+        if(!username){ 
+            return false
+        }
+        const usersCollection = await users(); 
+        const userFound = await usersCollection.findOne({"username": username}); 
+
+        if (userFound === null){ 
+            return false
+        }
+
+        return true;
+    }, 
+
     async addNewUser(name, password, cart, previouslyBought, itemsToSell, contactInfo){ 
         // Adds new user into DB
         if (typeof name !== "string" || name == null ){
