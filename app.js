@@ -136,6 +136,18 @@ app.use("/listingDetails", (req, res, next)=> {
     }
 });
 
+app.use("/yourListings", (req, res, next)=> { 
+	if (!req.session.user){
+        let authenticated = "Non-Authenticated User (Middleware)"
+		console.log('[' + new Date().toUTCString()  + ']: ' + req.method + " " + req.originalUrl+ " " + authenticated)
+        return res.redirect('/login') 
+    }else { 
+        let authenticated = "Authenticated User (Middleware)"
+		console.log('[' + new Date().toUTCString()  + ']: ' + req.method + " " + req.originalUrl+ " " + authenticated)
+        next(); 
+    }
+});
+
 configRoutes(app);
 
 app.listen(3000, () => {

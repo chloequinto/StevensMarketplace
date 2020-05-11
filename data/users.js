@@ -92,7 +92,7 @@ module.exports = {
         return hash
     }, 
 
-    async addProductToCard(productId, userId){ 
+    async addProductToCart(productId, userId){ 
 
         if(!productId){ 
             throw "[ERROR] Must provide product ID"

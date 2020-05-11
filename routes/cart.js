@@ -11,7 +11,7 @@ router.get("/", async(req, res) => {
 
         // If the user is adds to cart 
         if (req.query.id){ 
-            await users.addProductToCard(req.query.id, req.session.user.userId)
+            await users.addProductToCart(req.query.id, req.session.user.userId)
         }
         // Get the user's products 
         const usersCart = await users.getUsersCart(req.session.user.userId); 

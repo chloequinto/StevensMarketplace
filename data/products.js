@@ -117,16 +117,36 @@ module.exports = {
             console.log(e)
         }
 
-        // Find all products where IDs are in the obj_ids
+        // Find all products where IDs are in the obj_ids 
+        // !! SET FUNC  Add logic to find duplicates in the set
         const productsFound = await productsCollection.find({"_id": {$in: obj_ids}}).toArray(); 
 
-        // Retrieve total price of cart 
-        let total = -5 // fix for coupon 
-        for (let i = 0; i < productsFound.length; i++){
-            total += productsFound[i].price
+        var fullCart = []
+        let total = -5 
 
+        if (obj_ids.length > 1){ 
+
+            for (let j = 0; j < obj_ids.length; j++){ 
+                for (let i = 0; i < productsFound.length; i++){ 
+                    if (productsFound[i]._id.toString() === obj_ids[j].toString()){ 
+                        // add to total 
+                        total += productsFound[i].price
+                        // add to full cart 
+                        fullCart.push(productsFound[i])
+                    }
+                }
+
+            }
+            return [fullCart, total]
+        }else{ 
+            for (let i = 0; i < productsFound.length; i++){
+                total += productsFound[i].price
+
+            }
+            return [productsFound, total]
         }
-        return [productsFound, total]
+
+
     }, 
 
     async getSearchResults(query){ 
