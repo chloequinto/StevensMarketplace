@@ -124,7 +124,7 @@ module.exports = {
             throw "[ERROR] No userID provided"
         }
 
-        let userInfo = await this.getUserById(userId); 
+        let userInfo = await this.getUserById(userId);
         return userInfo.cart
     }, 
 

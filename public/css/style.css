@@ -180,3 +180,10 @@ a.custom-card:hover {
     transform: translateX(-50%);
     -webkit-transform: translateX(-50%);
 }
+
+.message{
+    padding: 0 0 0.75% 10%;
+    font-family:'Maven Pro', sans-serif;
+    font-size: 15px;
+    color: var(--stevensRed);
+}

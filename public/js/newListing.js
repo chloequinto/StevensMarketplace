@@ -14,24 +14,6 @@ reader.onload = function(){
     console.log(output)
 }
 reader.readAsDataURL(input.files[0]);
-
-const handleImageUpload = event => {
-    const files = event.target.files
-    const formData = new FormData()
-    formData.append('myFile', files[0])
-    fetch('/newListing',{
-        method: 'POST',
-        body: formData
-    })
-    .then(response => response.json())
-    .then(data => {
-        console.log(data.path)
-    })
-    .catch(error =>{
-        console.log(error)
-    })
-
-}
 document.querySelector('#picture').addEventListener('change', event =>{
     handleImageUpload(event)
 })
