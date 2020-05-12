@@ -12,8 +12,7 @@ router.get('/', async(req, res) => {
 
         // Get the user's products 
         const usersCart = await users.getUsersCart(req.session.user.userId); 
-        console.log(usersCart)
-        console.log(typeof(usersCart))
+
         // Get product's info 
         const productInfo = await products.getCartInfo(usersCart)
 
