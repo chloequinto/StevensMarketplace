@@ -65,7 +65,7 @@ function removeFavorite(listingId){
 
         event.preventDefault()
         var newComment = newCommentText.val();
-        if(newComment){
+        if(newComment && newComment != null && newComment != ""){
             var requestConfig = {
                 method: 'POST',
                 url: '/listingDetails/comments',

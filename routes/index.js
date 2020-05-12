@@ -62,12 +62,11 @@ const constructorMethod = (app) => {
 
     app.post('/createUser', async (req, res) => {
         try{
-            console.log(req.body.contactInfo.indexOf("@stevens.edu"))
-            console.log(req.body.contactInfo.length-12)
+
             if( req.body.name != null && req.body.name != "" &&
                 req.body.password != null && req.body.password != "" &&
                 req.body.contactInfo != null && req.body.contactInfo != "" && 
-                req.body.contactInfo.indexOf("@stevens.edu") == req.body.contactInfo.length - 12){
+                req.body.contactInfo.toLowerCase().indexOf("@stevens.edu") == req.body.contactInfo.length - 12){
                 
                 try{
                     userSearch = await users.userExistsFromUsername(req.body.name)
