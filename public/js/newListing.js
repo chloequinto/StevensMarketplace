@@ -21,6 +21,7 @@ document.querySelector('#picture').addEventListener('change', event =>{
 //Form validation
 const staticForm = document.getElementById("static-form");
 
+
 if(staticForm){
 
     staticForm.addEventListener("submit", event => {
@@ -34,27 +35,29 @@ if(staticForm){
         const descriptionValue = description.value
 
         const price = document.getElementById("price")
-        const priceValue = price.value
+        const priceValue = price.valueAsNumber
 
         const picture = document.getElementById("picture")
         const pictureValue = picture.value
 
         if(!nameValue){
-            alert("Please enter a product name of correct format!")
+            alert("Product Name is blank or not the correct format! Please try again.")
         }
         if(!categoryValue || typeof(categoryValue) !== "string"){
-            alert("Please enter a category of correct format!")
+            alert("Category is blank or not the correct format! Please try again.")
         }
         if(!descriptionValue || typeof(descriptionValue) !== "string"){
-            alert("Please enter a description of correct format!")
+            alert("Description is blank or not the correct format! Please try again.")
         }
-        if(!priceValue){
-            alert("Please enter a price as a number!")
+        
+        if(!priceValue || typeof(priceValue) !== "number"){
+            alert("Price is blank or not entered as a number! Please try again")
         }
-        console.log(pictureValue)
-        console.log(typeof(pictureValue))
+        if(priceValue <= 0){
+            alert("Price cannot be 0 or a negative number! Please try again.")
+        }
         if(!pictureValue || typeof(pictureValue)!=="string"){
-            alert("Please enter a picture of correct format!")
+            alert("Picture is blank or not the correct format! Please try again")
         }
     })
    
