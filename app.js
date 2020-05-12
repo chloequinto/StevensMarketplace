@@ -21,7 +21,7 @@ app.use('/public', static);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
+app.engine('handlebars', exphbs({ defaultLayout: 'main' , partialsDir: ['/views/partials/']}));
 app.set('view engine', 'handlebars');
 
 

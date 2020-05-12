@@ -13,7 +13,7 @@ router.get('/', async(req, res) => {
         if(favorites.indexOf(req.query.id) >= 0){
             favorite = true
         }
-        res.render('listingView/listingDetails', {productData: product, style: "css/details.css", favorite: favorite})
+        res.cookie('currentProduct', req.query.id).render('listingView/listingDetails', {productData: product, style: "css/details.css", favorite: favorite})
     }
     catch (e) {
         res.status(500).json({error: e})
@@ -21,4 +21,18 @@ router.get('/', async(req, res) => {
 
 });
 
+
+router.post('/comments', async (req, res) => {
+    
+    const productId = req.cookies.currentProduct;
+    console.log(productId)
+    console.log(req.body.comment)
+    
+    
+    const product = await productData.addComment(req.body.comment, productId)
+    var comments = product.comments
+    console.log(comments)
+    res.json({comments: comments})
+    
+})
 module.exports = router;

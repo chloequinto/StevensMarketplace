@@ -62,22 +62,38 @@ const constructorMethod = (app) => {
 
     app.post('/createUser', async (req, res) => {
         try{
+            console.log(req.body.contactInfo.indexOf("@stevens.edu"))
+            console.log(req.body.contactInfo.length-12)
             if( req.body.name != null && req.body.name != "" &&
                 req.body.password != null && req.body.password != "" &&
-                req.body.contactInfo != null && req.body.contactInfo != "" ){
+                req.body.contactInfo != null && req.body.contactInfo != "" && 
+                req.body.contactInfo.indexOf("@stevens.edu") == req.body.contactInfo.length - 12){
+                
+                try{
+                    userSearch = await users.userExistsFromUsername(req.body.name)
+                    userSearch2 = await users.getUserByEmail(req.body.contactInfo)
 
-                userSearch = await users.userExistsFromUsername(req.body.name)
-                if(userSearch){
-                    res.cookie('createErrorMsg',  'An account with the same username exists').redirect("/createAccount")
+                    if(userSearch || userSearch2){
+                        res.cookie('createErrorMsg',  'An account with the same username or email already exists').redirect("/createAccount")
+                    }
+                    else{
+                        user = await users.addNewUser(req.body.name, req.body.password, [], [],[], req.body.contactInfo)       
+                        req.session.user= {username: user.username, hasBought: user.hasBought, userId: user._id }     
+                        res.clearCookie('createErrorMsg')
+                        res.clearCookie('loginErrorMsg')
+                        res.cookie('AuthCookie',  user).redirect("/home")
+    
+                    }
                 }
-                else{
-                    user = await users.addNewUser(req.body.name, req.body.password, [], [],[], req.body.contactInfo)       
-                    req.session.user= {username: user.username, hasBought: user.hasBought, userId: user._id }     
-                    res.clearCookie('createErrorMsg')
-                    res.clearCookie('loginErrorMsg')
-                    res.cookie('AuthCookie',  user).redirect("/home")
-
+                catch{
+                        user = await users.addNewUser(req.body.name, req.body.password, [], [],[], req.body.contactInfo)       
+                        req.session.user= {username: user.username, hasBought: user.hasBought, userId: user._id }     
+                        res.clearCookie('createErrorMsg')
+                        res.clearCookie('loginErrorMsg')
+                        res.cookie('AuthCookie',  user).redirect("/home")
+    
                 }
+                
 
             }
             else{

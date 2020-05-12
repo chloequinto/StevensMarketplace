@@ -1,8 +1,4 @@
 
-
-
-
-
 function likeClicked(t, listingId =""){
 
     var s = t.getAttribute('src')
@@ -40,6 +36,7 @@ function likeClicked(t, listingId =""){
     }
 }
 
+
 function removeFavorite(listingId){
     fetch("/favorites", {
         method: 'POST',
@@ -53,3 +50,51 @@ function removeFavorite(listingId){
         })
     }) 
 }
+
+(function($) {
+
+    var newCommentForm = $("#new-comment-form"),
+        newCommentText = $("#new-comment-text"),
+        commentsArea = $("#comments-area")
+    
+    function binEventsToCommentsIte(comments){
+         
+    }
+
+    newCommentForm.submit(function(event) {
+
+        event.preventDefault()
+        var newComment = newCommentText.val();
+        if(newComment){
+            var requestConfig = {
+                method: 'POST',
+                url: '/listingDetails/comments',
+                contentType: 'application/json',
+                data: JSON.stringify({
+                    comment: newComment
+                }),
+            }
+
+            $(document).ajaxSuccess(function(event,xhr,options){
+                comments = xhr.responseJSON.comments
+                var p = ''
+                for(let i = 0; i<comments.length; i++){
+                    p = p + "<p>" + comments[i] + "</p>"
+                }
+                commentsArea.html(p)
+                
+            });
+
+            $.ajax(requestConfig).then(function(responseMessage) {
+                console.log(responseMessage);
+                // newContent.html(responseMessage.message);
+                //                alert("Data Saved: " + msg);
+            });
+        }
+    })
+
+    
+
+
+
+})(window.jQuery);

@@ -40,6 +40,19 @@
 
                     {{/if}}
 
+                    <form id="new-comment-form">
+                        <input id="new-comment-text" type="text" placeholder="awesome!" /></label>
+                        <button type="submit">Add Comment!</button>
+                    </form>
+
+                    <h2>Comments: </h2>
+                    <div id="comments-area">
+                        {{#each productData.comments}}
+                        <p>{{this}}</p>
+                        {{/each}}
+                    </div>
+
+                    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
                     <script src="../../public/js/listingDetails.js"></script>
                 </div>
             </section>

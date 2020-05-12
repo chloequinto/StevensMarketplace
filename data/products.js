@@ -78,7 +78,8 @@ module.exports = {
             price: price, 
             contactInfo: vendorContact.contactInfo, 
             image: image,
-            vendorId: vendorId
+            vendorId: vendorId,
+            comments: []
         }
 
         const insertProduct = await productsCollection.insertOne(newProduct); 
@@ -204,6 +205,34 @@ module.exports = {
 		}
 
 		return await this.getProductById(id);
-	}
+    },
+
+    async addComment(comment, productId){
+        if (!productId) throw 'You must provide an id to update product for';
+		if (typeof comment !== "string" || !comment){
+            throw "[ERROR] No comment provided or not string"
+        }
+
+        const productsCollection = await products(); 
+        const updateProduct = await productsCollection.updateOne( 
+            {"_id": new ObjectID(productId)}, 
+            {$push: {"comments": comment.toString()}}
+        );
+
+        return await this.getProductById(productId)
+    },
+    
+    async getComments(productId){
+        if (!productId) throw 'You must provide an id to update product for';
+        const p = await this.getProductById(productId)
+        if(p.comments == null){
+            return []
+        }
+        else{
+            return p.comments
+        }
+
+    }
+
 
 }
