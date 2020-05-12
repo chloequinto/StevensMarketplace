@@ -187,3 +187,7 @@ a.custom-card:hover {
     font-size: 15px;
     color: var(--stevensRed);
 }
+
+.cartInfo { 
+    padding-bottom: 1%;
+}

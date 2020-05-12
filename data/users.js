@@ -278,7 +278,67 @@ module.exports = {
         else{
             throw "No user exists with the provided id"
         }
+    }, 
+
+    async removeItem(productId, userId){ 
+ 
+        if(!userId){ 
+            throw "[ERROR] No userID provided"
+        }
+        if(!productId){ 
+            throw "[ERROR] No productID provided"
+        }
+        const user = await this.getUserById(userId); 
+        const usersCollection = await users(); 
+
+        let count = 1
+        let saveIdx = 0
+
+        // DEEP COPY 
+        let newCart = JSON.parse(JSON.stringify(user.cart))
+
+        // iterate through array if product is there more than once 
+        try{ 
+            for (let i = 0; i < user.cart.length; i++){ 
+                if (newCart[i].toString() == productId.toString()){
+                    if (count === 0){
+                        newCart.splice(saveIdx, 1)
+                    }
+                    saveIdx = i; 
+                    count--; 
+                }
+            }
+        }catch(e){
+            console.log(e)
+        }
+
+
+        // if the given productID is part of a duplicate, update cart to a set of all items 
+        if (newCart.length != user.cart.length){ 
+
+            const updateUser = await usersCollection.updateOne(
+                {"_id": new ObjectID(userId)}, 
+                {$set: {'cart': newCart}}); 
+
+            if (updateUser.modifiedCount === 0){ 
+                throw "[ERROR] Could not update cart"
+            }
+
+            const foundId = await this.getUserById(userId)
+
+            return foundId  
+        }else{
+            updatedUser = await usersCollection.updateOne(
+                {"_id": new ObjectID(userId)}, 
+                {$pull: {'cart':  productId.toString()}}
+            )
+            
+            return updatedUser
+        }
+
+
     }
+
 
 
 }

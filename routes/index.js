@@ -11,7 +11,7 @@ const profileRoutes = require('./profile')
 const yourListingsRoutes = require('./yourListings')
 const favoriteRoutes = require('./favorites')
 const editRoutes = require('./editListing')
-
+const removeCartRoutes = require("./removeCart")
 const products = require("../data/products")
 const users = require("../data/users");
 
@@ -107,6 +107,7 @@ const constructorMethod = (app) => {
     app.use("/search", searchRoutes)
     app.use("/favorites", favoriteRoutes)
     app.use("/editListing", editRoutes)
+    app.use("/removeCart", removeCartRoutes)
 
 };  
 

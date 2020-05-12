@@ -32,14 +32,27 @@
       </h4>
          <!-- Cart Info --> 
        <ul class="list-group mb-3">
+
          {{# each productData}}
-        <li class="list-group-item d-flex justify-content-between lh-condensed">
+         <div class=""> 
+          <li class="list-group-item d-flex justify-content-between lh-condensed">
           <div>
+
             <h6 class="my-0">{{this.productName}}</h6>
-            <small class="text-muted">{{this.description}}</small>
+
+            <p class="text-muted">{{this.description}}</p>
+            <a href="#" class="btn btn-danger" onclick="this.href='/removeCart?id={{this._id}}'">Remove Item</a> 
+
           </div>
+            {{!-- <a href="#">X</a>  --}}
           <span class="text-muted">${{this.price}}</span>
+
+
         </li>
+
+         </div>
+
+
         {{/each}}
         <!-- Promo Code --> 
         <li class="list-group-item d-flex justify-content-between bg-light">
