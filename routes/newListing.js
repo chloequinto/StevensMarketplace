@@ -26,16 +26,20 @@ router.post('/', upload.single('picture'), async(req, res) =>{
     try{
         const date = new Date();
         const username = req.session.user.username
-        const picture = req.file.originalname
 
-        let {name, category, description, price} = listingData
-        price = Number(price)
-        await product.addNewProduct(name, category, description, date, username, price, picture);
-        res.render("newListingView/newListing", {
-            style: 'css/new.css',
-            message: "Post successful!",
-            class: 'success',
-        })
+        if(req.file == undefined){
+            throw "[ERROR] No picture provided"
+        } else{
+            const picture = req.file.originalname
+            let {name, category, description, price} = listingData
+            price = Number(price)
+            await product.addNewProduct(name, category, description, date, username, price, picture);
+            res.render("newListingView/newListing", {
+                style: 'css/new.css',
+                message: "Post successful!",
+                class: 'success',
+            })
+        }     
     } catch(e){
         console.log(e);
         res.status(400);

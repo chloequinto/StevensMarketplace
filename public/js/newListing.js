@@ -39,7 +39,6 @@ if(staticForm){
 
         const picture = document.getElementById("picture")
         const pictureValue = picture.value
-
         if(!nameValue){
             alert("Product Name is blank or not the correct format! Please try again.")
         }
@@ -56,7 +55,7 @@ if(staticForm){
         if(priceValue <= 0){
             alert("Price cannot be 0 or a negative number! Please try again.")
         }
-        if(!pictureValue || typeof(pictureValue)!=="string"){
+        if(pictureValue==undefined || typeof(pictureValue)!=="string"){
             alert("Picture is blank or not the correct format! Please try again")
         }
     })

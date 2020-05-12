@@ -23,7 +23,6 @@ router.get('/', async(req, res) => {
         const product = await productData.getProductById(req.query.id)
         const username = req.session.user.username
 
-        console.log(product.image)
         if(product.vendor == username){
             res.render("editingView/editingView", {
                 style: 'css/new.css', 
@@ -49,26 +48,53 @@ router.post('/', upload.single('picture'), async(req, res) =>{
     const listingData = req.body;
     
     try{
-        const picture = req.file.originalname
-        console.log(req.file)
-        const id = req.query.id
-        let {name, category, description, price} = listingData
-        
-        
-        price = Number(price)
-        await product.updateProduct(id, name, category, description, price, picture);
-        res.render("editingView/editingView", {
-            style: 'css/new.css',
-            message: "Update successful!",
-            class: 'success',
-            allowed: true,
-            listingName: name,
-            listingCategory: category,
-            listingDescription: description,
-            listingPrice: price,
-            listingImage: picture,
-            //display data
-        })
+        const p = await productData.getProductById(req.query.id)
+
+        //if there isnt a new image dislpay old picture(product.image)
+        if(req.file == undefined){
+            const picture = p.image
+            const id = req.query.id
+            let {name, category, description, price} = listingData
+            
+            
+            price = Number(price)
+            await product.updateProduct(id, name, category, description, price, picture);
+            res.render("editingView/editingView", {
+                style: 'css/new.css',
+                message: "Update successful!",
+                class: 'success',
+                allowed: true,
+                listingName: name,
+                listingCategory: category,
+                listingDescription: description,
+                listingPrice: price,
+                listingImage: picture,
+                //display data
+            })
+
+            
+        } else{
+            const picture = req.file.originalname
+    
+            const id = req.query.id
+            let {name, category, description, price} = listingData
+            
+            
+            price = Number(price)
+            await product.updateProduct(id, name, category, description, price, picture);
+            res.render("editingView/editingView", {
+                style: 'css/new.css',
+                message: "Update successful!",
+                class: 'success',
+                allowed: true,
+                listingName: name,
+                listingCategory: category,
+                listingDescription: description,
+                listingPrice: price,
+                listingImage: picture,
+                //display data
+            })
+        }
         
     } catch(e){
         console.log(e);
