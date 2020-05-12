@@ -4,7 +4,6 @@ const router = express.Router();
 const data = require('../data');
 const product = data.products;
 
-
 //save new image to upload folder
 const storage = multer.diskStorage({
     destination: function(req, file, cb) {

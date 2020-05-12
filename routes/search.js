@@ -6,6 +6,8 @@ const data = require('../data')
 const user = data.users
 const productData = data.products;
 
+const xss = require("xss")
+
 
 router.post('/', async(req, res) => {
 

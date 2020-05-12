@@ -4,6 +4,7 @@ const router = express.Router();
 const data = require('../data')
 
 const users = require('../data/users')
+
 const productData = data.products;
 
 

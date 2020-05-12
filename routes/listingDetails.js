@@ -3,6 +3,7 @@ const router = express.Router();
 const data = require('../data');
 const productData = data.products
 const userData = data.users
+const xss = require("xss")
 
 router.get('/', async(req, res) => {
     
@@ -29,7 +30,7 @@ router.post('/comments', async (req, res) => {
     console.log(req.body.comment)
     
     
-    const product = await productData.addComment(req.body.comment, productId)
+    const product = await productData.addComment(xss(req.body.comment), productId)
     var comments = product.comments
     console.log(comments)
     res.json({comments: comments})

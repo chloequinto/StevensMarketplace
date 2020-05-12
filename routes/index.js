@@ -15,6 +15,8 @@ const removeCartRoutes = require("./removeCart")
 const products = require("../data/products")
 const users = require("../data/users");
 
+const xss = require("xss")
+
 const bcrypt = require("bcryptjs"); 
 
 
@@ -34,9 +36,9 @@ const constructorMethod = (app) => {
 
     app.post('/login', async (req, res) => {
         try{
-            user = await users.getUserByEmail(req.body.contactInfo)
-            hashedPasswordInput = await users.hashPassword(req.body.password)
-            if(bcrypt.compareSync(req.body.password, user.password)){
+            user = await users.getUserByEmail(xss(req.body.contactInfo))
+            hashedPasswordInput = await users.hashPassword(xss(req.body.password))
+            if(bcrypt.compareSync(xss(req.body.password), user.password)){
                 req.session.user= {username: user.username, hasBought: user.hasBought, userId: user._id }
                 res.clearCookie('createErrorMsg')
                 res.clearCookie('loginErrorMsg')
@@ -63,20 +65,20 @@ const constructorMethod = (app) => {
     app.post('/createUser', async (req, res) => {
         try{
 
-            if( req.body.name != null && req.body.name != "" &&
-                req.body.password != null && req.body.password != "" &&
-                req.body.contactInfo != null && req.body.contactInfo != "" && 
-                req.body.contactInfo.toLowerCase().indexOf("@stevens.edu") == req.body.contactInfo.length - 12){
+            if( xss(req.body.name) != null && xss(req.body.name) != "" &&
+                xss(req.body.password) != null && xss(req.body.password) != "" &&
+                xss(req.body.contactInfo) != null && xss(req.body.contactInfo) != "" && 
+                xss(req.body.contactInfo).toLowerCase().indexOf("@stevens.edu") == xss(req.body.contactInfo).length - 12){
                 
                 try{
-                    userSearch = await users.userExistsFromUsername(req.body.name)
-                    userSearch2 = await users.getUserByEmail(req.body.contactInfo)
+                    userSearch = await users.userExistsFromUsername(xss(req.body.name))
+                    userSearch2 = await users.getUserByEmail(xss(req.body.contactInfo))
 
                     if(userSearch || userSearch2){
                         res.cookie('createErrorMsg',  'An account with the same username or email already exists').redirect("/createAccount")
                     }
                     else{
-                        user = await users.addNewUser(req.body.name, req.body.password, [], [],[], req.body.contactInfo)       
+                        user = await users.addNewUser(xss(req.body.name), xss(req.body.password), [], [],[], xss(req.body.contactInfo))       
                         req.session.user= {username: user.username, hasBought: user.hasBought, userId: user._id }     
                         res.clearCookie('createErrorMsg')
                         res.clearCookie('loginErrorMsg')
@@ -85,7 +87,7 @@ const constructorMethod = (app) => {
                     }
                 }
                 catch{
-                        user = await users.addNewUser(req.body.name, req.body.password, [], [],[], req.body.contactInfo)       
+                        user = await users.addNewUser(xss(req.body.name), xss(req.body.password), [], [],[], xss(req.body.contactInfo))       
                         req.session.user= {username: user.username, hasBought: user.hasBought, userId: user._id }     
                         res.clearCookie('createErrorMsg')
                         res.clearCookie('loginErrorMsg')
