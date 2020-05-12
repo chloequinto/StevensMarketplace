@@ -31,8 +31,6 @@ router.post('/', upload.single('picture'), async(req, res) =>{
 
         let {name, category, description, price} = listingData
 
-        price = Number(price)
-
         await product.addNewProduct(name, category, description, date, username, price, picture);
         res.render("newListingView/newListing", {
             style: 'css/new.css',

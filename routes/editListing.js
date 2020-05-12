@@ -20,6 +20,8 @@ router.get('/', async(req, res) => {
     try{
         const product = await productData.getProductById(req.query.id)
         const username = req.session.user.username
+
+        console.log(product.image)
         if(product.vendor == username){
             res.render("editingView/editingView", {
                 style: 'css/new.css', 
@@ -46,13 +48,12 @@ router.post('/', upload.single('picture'), async(req, res) =>{
     
     try{
         const picture = req.file.originalname
+        console.log(req.file)
         const id = req.query.id
         let {name, category, description, price} = listingData
         
         
         price = Number(price)
-        // const date = new Date()
-        // const username = req.session.user.username
         await product.updateProduct(id, name, category, description, price, picture);
         res.render("editingView/editingView", {
             style: 'css/new.css',
