@@ -56,8 +56,8 @@ module.exports = {
         if (typeof vendor !== "string" || !vendor){
             throw "[ERROR] No vendor provided or not string"
         }
-        if (typeof price !== "number" || !price){
-            throw "[ERROR] No price provided or not number"
+        if (typeof price !== "number" || !price || price <= 0){
+            throw "[ERROR] No price provided or not number or not positive"
         }
         if (typeof image !== "string" || !image){
             throw "[ERROR] No image provided or not string"
@@ -183,8 +183,8 @@ module.exports = {
         if (typeof description !== "string" || !description){
             throw "[ERROR] No description provided or not string"
         }
-        if (typeof price !== "number" || !price){
-            throw "[ERROR] No price provided or not number"
+        if (typeof price !== "number" || !price || price <= 0){
+            throw "[ERROR] No price provided or not number or not positve"
         }
         if (typeof image !== "string" || !image){
             throw "[ERROR] No image provided or not string"

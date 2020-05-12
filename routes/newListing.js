@@ -3,7 +3,8 @@ const express = require('express');
 const router = express.Router();
 const data = require('../data');
 const product = data.products;
-
+//Using multer to save image to server
+//Not posting actual image to MongoDb just location
 const storage = multer.diskStorage({
     destination: function(req, file, cb) {
         cb(null, './uploads/')
@@ -27,10 +28,8 @@ router.post('/', upload.single('picture'), async(req, res) =>{
         const username = req.session.user.username
         const picture = req.file.originalname
 
-
-
         let {name, category, description, price} = listingData
-
+        price = Number(price)
         await product.addNewProduct(name, category, description, date, username, price, picture);
         res.render("newListingView/newListing", {
             style: 'css/new.css',
