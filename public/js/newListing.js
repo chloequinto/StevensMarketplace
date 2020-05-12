@@ -55,7 +55,7 @@ if(staticForm){
         if(priceValue <= 0){
             alert("Price cannot be 0 or a negative number! Please try again.")
         }
-        if(pictureValue==undefined || typeof(pictureValue)!=="string"){
+        if( !pictureValue || typeof(pictureValue)!=="string"){
             alert("Picture is blank or not the correct format! Please try again")
         }
     })
