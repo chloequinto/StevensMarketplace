@@ -14,30 +14,47 @@ reader.onload = function(){
     console.log(output)
 }
 reader.readAsDataURL(input.files[0]);
-
-const handleImageUpload = event => {
-    const files = event.target.files
-    const formData = new FormData()
-    formData.append('myFile', files[0])
-    fetch('/editListing',{
-        method: 'POST',
-        body: formData
-    })
-    .then(response => response.json())
-    .then(data => {
-        console.log(data.path)
-    })
-    .catch(error =>{
-        console.log(error)
-    })
-
-}
 document.querySelector('#picture').addEventListener('change', event =>{
     handleImageUpload(event)
 })
+}
 
-if(imageFile){
-    const openFile = function(file){
+//Form Validation
+const staticForm = document.getElementById("static-form");
 
-    }
-}}
+if(staticForm){
+
+    staticForm.addEventListener("submit", event => {
+        const name = document.getElementById("name")
+        const nameValue = name.value
+
+        const category = document.getElementById("category")
+        const categoryValue = category.value
+
+        const description = document.getElementById("description")
+        const descriptionValue = description.value
+
+        const price = document.getElementById("price")
+        const priceValue = price.value
+
+        const picture = document.getElementById("picture")
+        // const pictureValue = picture.value
+
+        if(!nameValue){
+            alert("Please enter a product name of correct format!")
+        }
+        if(!categoryValue || typeof(categoryValue) !== "string"){
+            alert("Please enter a category of correct format!")
+        }
+        if(!descriptionValue || typeof(descriptionValue) !== "string"){
+            alert("Please enter a description of correct format!")
+        }
+        if(!priceValue){
+            alert("Please enter a price as a number!")
+        }
+        // if(!pictureValue || typeof(pictureValue)!=="string"){
+        //     alert("Please enter a picture of correct format!")
+        // }
+    })
+   
+}

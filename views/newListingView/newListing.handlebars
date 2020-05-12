@@ -16,9 +16,11 @@
 </nav>
 <a class="btn btn-outline-danger" href="/logout">Logout</a>
 
+
+
 </div>
 <p class = "one">Create A New Listing</p>
-<form method="POST" id = "static-form" enctype="multipart/form-data">
+<form method="POST" action="/newListing" id = "static-form" enctype="multipart/form-data">
   <label for="name">Product Name:</label>
   <input type="text" id="name" name="name"><br><br>
 
@@ -29,7 +31,7 @@
   <input type="text" id="description" name="description"><br><br>
 
   <label for="price">Price:</label>
-  <input type="text" id="price" name="price"><br><br>
+  <input type="number" id="price" name="price"><br><br>
 
 
   <label for="picture">Picture:</label>

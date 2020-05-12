@@ -32,11 +32,11 @@
   <input type="text" id="description" name="description" value={{listingDescription}}><br><br>
 
   <label for="price">Price:</label>
-  <input type="text" id="price" name="price" value={{listingPrice}}><br><br>
+  <input type="number" id="price" name="price" value={{listingPrice}}><br><br>
 
 
   <label for="picture">Picture:</label>
-  <input type="file"  name = "picture" id="picture" accept = 'image/*' onchange = 'openFile(event)'name="picture" class="picture"><br><br>
+  <input type="file"  name = "picture" id="picture" accept = 'image/*' onchange = 'openFile(event)'name="picture" class="picture" value = {{listingImage}} ><br><br>
 
 
   <img id='output' src={{listingImage}}><br><br>
