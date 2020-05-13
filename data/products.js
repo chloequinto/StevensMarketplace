@@ -68,7 +68,7 @@ module.exports = {
         const usersCollection = await users(); 
 
         let vendorContact = await usersCollection.findOne({username: vendor})
-        console.log(vendorContact)
+
         let newProduct = { 
             productName: productName, 
             category: category, 
@@ -172,7 +172,6 @@ module.exports = {
     },
 
     async updateProduct(id, productName, category, description, price, image) {
-        console.log(id)
         if (!id) throw 'You must provide an id to update product for';
 		if (typeof productName !== "string" || !productName){
             throw "[ERROR] No product name provided or not string"

@@ -26,13 +26,13 @@ router.get('/', async(req, res) => {
 router.post('/comments', async (req, res) => {
     
     const productId = req.cookies.currentProduct;
-    console.log(productId)
-    console.log(req.body.comment)
+    // console.log(productId)
+    // console.log(req.body.comment)
     
     
     const product = await productData.addComment(xss(req.body.comment), productId)
     var comments = product.comments
-    console.log(comments)
+    // console.log(comments)
     res.json({comments: comments})
     
 })
