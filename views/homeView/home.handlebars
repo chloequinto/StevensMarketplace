@@ -1,5 +1,5 @@
     <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
-    <h5 class="my-0 mr-md-auto font-weight-normal">Stevens Marketplace</h5>
+    <h1 class="my-0 mr-md-auto font-weight-normal">Stevens Marketplace</h1>
 
     <nav class="my-2 my-md-0 mr-md-3">
         <a class="p-2 text-dark" href="/home">Home</a>
@@ -40,10 +40,10 @@
             <div class="card">
 
                 <div class="card-body">
-                    <h5 class="card-title">{{this.productName}}</h5>
+                    <h2 class="card-title">{{this.productName}}</h2>
 
                     <img src={{this.image}} class="card-img" alt="...">
-                    <h6 class="card-title pricing-card-title">Price: {{this.price}}</h6>
+                    <h3 class="card-title pricing-card-title">Price: {{this.price}}</h3>
                     <p class="card-text">{{this.description}}</p>
                     <a href='' onclick="this.href='/listingDetails?id={{this._id}}'" class="btn btn-danger" id="likeID">Buy</a>
                 </div>
