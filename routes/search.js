@@ -11,7 +11,10 @@ const xss = require("xss")
 
 router.post('/', async(req, res) => {
 
-    let query = req.body; 
+    let query = {
+        term: xss(req.body.term)
+    }
+    console.log(query)
 
     if(!query || query["term"] == ""){ 
         res.status(403).render("searchView/searchFailure", {search: query.term.toString(), style: "css/style.css"})
