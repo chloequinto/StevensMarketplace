@@ -42,20 +42,20 @@ if(staticForm){
         if(!nameValue){
             alert("Product Name is blank or not the correct format! Please try again.")
         }
-        if(!categoryValue || typeof(categoryValue) !== "string"){
+        else if(!categoryValue || typeof(categoryValue) !== "string"){
             alert("Category is blank or not the correct format! Please try again.")
         }
-        if(!descriptionValue || typeof(descriptionValue) !== "string"){
+        else if(!descriptionValue || typeof(descriptionValue) !== "string"){
             alert("Description is blank or not the correct format! Please try again.")
         }
         
-        if(!priceValue || typeof(priceValue) !== "number"){
+        else if(!priceValue || typeof(priceValue) !== "number"){
             alert("Price is blank or not entered as a number! Please try again")
         }
-        if(priceValue <= 0){
+        else if(priceValue <= 0){
             alert("Price cannot be 0 or a negative number! Please try again.")
         }
-        if(!pictureValue || typeof(pictureValue)!=="string"){
+        else if(!pictureValue || typeof(pictureValue)!=="string"){
             alert("Picture is blank or not the correct format! Please try again")
         }
     })

@@ -17,7 +17,10 @@
 <a class="btn btn-outline-danger" href="/logout">Logout</a>
 
 </div>
-<p class = "profile">Your Listings<p>
+<div>
+
+
+
 {{#each yourListings}}
     <div class = "listing">
 
@@ -26,7 +29,7 @@
         <p>Category: {{category}}</p>
         <p>Description: {{description}}</p>
         <p>Price: {{price}}</p>
-        <img src="{{image}}" height="300" width="400" class= "productImage" onerror="this.src='../../public/images/none.png'"/>       
+        <img src="{{image}}" height="300" width="400" class= "productImage" onerror="this.src='../../public/images/none.png'" alt="no image"/>       
         <p>Date Posted: {{postedData}}</p>
 
         <a href='' onclick="this.href='/editListing?id={{_id}}'" class="btn btn-danger" id="likeID">Edit</a>
@@ -36,3 +39,5 @@
     </div>
 
 {{/each}}
+
+

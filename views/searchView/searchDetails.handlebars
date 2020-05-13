@@ -21,10 +21,10 @@
   <h1 class="display-4">Search Results for: {{this.search}}</h1>
 </div>
 <div class="searchResults">
-    <h4 class="d-flex justify-content-between align-items-center mb-3">
+    <h2 class="d-flex justify-content-between align-items-center mb-3">
       <span class="text-muted">What we found: </span>
       <span class="badge badge-secondary badge-pill">{{results.length}}</span>
-    </h4>
+    </h2>
     <ul class="list-group mb-3">
 
       {{# each results}}
@@ -32,7 +32,7 @@
       <ul class="list-group">
         <li class="list-group-item">
             <div>
-              <h6 class="my-0">{{this.productName}}</h6>
+              <h3 class="my-0">{{this.productName}}</h3>
               <small class="text-muted">{{this.description}}</small>
             </div>
         <span class="text-muted">${{this.price}}</span>

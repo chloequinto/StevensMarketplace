@@ -5,11 +5,12 @@
     <a class="p-2 text-dark" href="/home">Home</a>
     <a class="p-2 text-dark" href="/newListing">New Listing</a>
     <a class="p-2 text-dark" href="/cart">Cart</a>
-    <div class="dropdown">
+    <div class="dropdown" context>
         <button class="dropbtn"><img src = "../../public/images/profile icon.jpg"  width="25" height="25" alt ="Profile"></button>
         <div class="dropdown-content">
-        <a href="/profile">Your profile</a>
-        <a href="/yourListings">Your listings</a>
+        
+        <a href="/profile" aria-label="your profile">Your Profile</a>
+        <a href="/yourListings" aria-label="your listings">Your listings</a>
         </div>
     </div>
 
@@ -22,7 +23,7 @@
         <td>
             <section>
                 <div class="container">
-                    <img src="{{productData.image}}" class= "productImage" onerror="this.src='../../public/images/none.png'"/>
+                    <img src="{{productData.image}}" class= "productImage" onerror="this.src='../../public/images/none.png'" alt="Product Image"/>
                     <p>
                         {{productData.productName}}
                     </p>
@@ -37,13 +38,16 @@
                     </p>
                     <a href='' onclick="this.href='/cart?id={{productData._id}}'" class="btn btn-danger" id="likeID">Add to cart</a>
                     {{#if favorite}}
-                        <img id="likeBtn" src="../../public/images/heart.png" onclick="likeClicked(this, '{{productData._id}}')"/>
+                        <img id="likeBtn" src="../../public/images/heart.png" alt="Liked" onclick="likeClicked(this, '{{productData._id}}')"/>
                     {{else}}
-                        <img id="likeBtn" src="../../public/images/heart-outline.png" onclick="likeClicked(this, '{{productData._id}}')"/>
+                        <img id="likeBtn" src="../../public/images/heart-outline.png" alt="Not liked" onclick="likeClicked(this, '{{productData._id}}')"/>
 
                     {{/if}}
 
                     <form id="new-comment-form">
+                        <label for="new-comment-text">
+                            New Comment:
+                        </label>
                         <input id="new-comment-text" type="text" placeholder="awesome!" /></label>
                         <button type="submit">Add Comment!</button>
                     </form>

@@ -103,7 +103,7 @@ form, .fail, .success{
   .dropdown:hover .dropbtn {background-color: transparent}
 
   .fail{
-      color: red
+      color: #ee0000;
   }
   .success{
       color: green
