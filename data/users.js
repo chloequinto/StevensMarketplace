@@ -288,6 +288,7 @@ module.exports = {
         if(!productId){ 
             throw "[ERROR] No productID provided"
         }
+
         const user = await this.getUserById(userId); 
         const usersCollection = await users(); 
 
@@ -299,7 +300,7 @@ module.exports = {
 
         // iterate through array if product is there more than once 
         try{ 
-            for (let i = 0; i < user.cart.length; i++){ 
+            for (let i = 0; i < newCart.length; i++){ 
                 if (newCart[i].toString() == productId.toString()){
                     if (count === 0){
                         newCart.splice(saveIdx, 1)

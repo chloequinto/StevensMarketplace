@@ -1,10 +1,5 @@
-if(window.performance){ 
-    console.info("Test")
-}
-
-if (performance.navigation.type === 1){ 
-    console.info("This page was reloaded")
-}
-else{ 
-    console.info("Not reloaded")
-}
+if (window.performance) {
+    if (performance.navigation.type == 1) {
+      alert( "[WARNING] Adding Same Product Again!!" );
+    } 
+  }

@@ -26,7 +26,7 @@ router.get("/", async(req, res) => {
             productInfo[1] = 0; 
         }
         
-        res.render("cartView/cartDetails",{ user: req.session.user, productData: productInfo[0], total: productInfo[1],  style: 'css/style.css'})
+        res.render("cartView/removeCartDetails",{ user: req.session.user, productData: productInfo[0], total: productInfo[1],  style: 'css/style.css'})
     }catch(e){ 
 
         res.status(500).json({error: e});
