@@ -195,7 +195,18 @@ a.custom-card:hover {
 
 
 .promocode{
-    color:#008600;
+    color:#006400 ;
 }
 
+.text-muted{ 
+    color: rgb(108, 117, 125);
 
+}
+
+.card-footer{ 
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.text-success{ 
+    color: rgb(108, 117, 125);
+}
