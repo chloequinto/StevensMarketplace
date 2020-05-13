@@ -126,6 +126,10 @@ const constructorMethod = (app) => {
     app.use("/editListing", editRoutes)
     app.use("/removeCart", removeCartRoutes)
 
+    app.use("*", (req, res) => {
+        res.render("error/invalid")
+    })
+
 };  
 
 module.exports = constructorMethod;
