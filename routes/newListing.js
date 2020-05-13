@@ -3,6 +3,8 @@ const express = require('express');
 const router = express.Router();
 const data = require('../data');
 const product = data.products;
+const xss = require("xss")
+
 //Using multer to save image to server
 //Not posting actual image to MongoDb just location
 const storage = multer.diskStorage({
@@ -22,7 +24,13 @@ router.get('/', async(req, res) => {
     res.render("newListingView/newListing", {style: 'css/new.css'});
 })
 router.post('/', upload.single('picture'), async(req, res) =>{
-    const listingData = req.body;
+    //wrap each req.body value in xss
+    const listingData = {
+        name: xss(req.body.name),
+        category: xss(req.body.category),
+        description: xss(req.body.description),
+        price: Number(xss(req.body.price))
+    };
     try{
         const date = new Date();
         const username = req.session.user.username

@@ -3,6 +3,7 @@ const express = require('express');
 const router = express.Router();
 const data = require('../data');
 const product = data.products;
+const xss = require('xss')
 
 //save new image to upload folder
 const storage = multer.diskStorage({
@@ -44,8 +45,13 @@ router.get('/', async(req, res) => {
 })
 
 router.post('/', upload.single('picture'), async(req, res) =>{
-    const listingData = req.body;
-    
+    //wrap each req.body value in xss
+    const listingData = {
+        name: xss(req.body.name),
+        category: xss(req.body.category),
+        description: xss(req.body.description),
+        price: Number(xss(req.body.price))
+    };
     try{
         const p = await productData.getProductById(req.query.id)
 
@@ -101,7 +107,7 @@ router.post('/', upload.single('picture'), async(req, res) =>{
         const p = await product.getProductById(req.query.id)
         res.render("editingView/editingView", {
             style: 'css/new.css',
-            message: "Updated Failed",
+            message: "There is nothing new to update or update failed",
             class: "fail",
             allowed:true,
             listingName: p.productName,
