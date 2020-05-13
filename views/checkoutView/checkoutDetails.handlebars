@@ -53,18 +53,6 @@
           <strong>{{total}}</strong>
         </li>
       </ul>
-    <!-- Promo Code --> 
-    <form class="card p-2">
-        <div class="input-group">
-          <label for="promo-form">
-              Code: 
-          </label>
-          <input id="promo-form" type="text" class="form-control" placeholder="Promo code">
-          <div class="input-group-append">
-            <button type="submit" class="btn btn-secondary">Redeem</button>
-          </div>
-        </div>
-    </form>
 
     </div>
 
@@ -140,11 +128,7 @@
             </div>
           </div>
         </div>
-        <hr class="mb-4">
-        <div class="custom-control custom-checkbox">
-          <input type="checkbox" class="custom-control-input" id="same-address">
-          <label class="custom-control-label" for="same-address">Shipping address is the same as my billing address</label>
-        </div>
+
         <hr class="mb-4">
 
         <h4 class="mb-3">Payment</h4>
@@ -180,7 +164,24 @@
             </div>
           </div>
         </div>
-{{!-- <a href="/bought" type="submit" class="btn btn-danger">Purchase</a>  --}}
+        <div class="row">
+          <div class="col-md-3 mb-3">
+            <label for="cc-expiration">Expiration</label>
+            <input type="text" class="form-control" id="cc-expiration" placeholder="" required>
+            <div class="invalid-feedback">
+              Expiration date required
+            </div>
+          </div>
+          <div class="col-md-3 mb-3">
+            <label for="cc-cvv">CVV</label>
+            <input type="text" class="form-control" id="cc-cvv" placeholder="" required>
+            <div class="invalid-feedback">
+              Security code required
+            </div>
+          </div>
+        </div>
+        <hr class="mb-4">
+
 <button class="btn btn-danger" type="submit">Purchase</button>
 </div>
 
