@@ -107,7 +107,7 @@ router.post('/', upload.single('picture'), async(req, res) =>{
         const p = await product.getProductById(req.query.id)
         res.render("editingView/editingView", {
             style: 'css/new.css',
-            message: "There is nothing new to update or update failed",
+            message: "Update failed",
             class: "fail",
             allowed:true,
             listingName: p.productName,
